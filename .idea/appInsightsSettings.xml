@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="it.uninsubria.insubriasocial" />
+                  <option name="mobileSdkAppId" value="1:116753462778:android:4cef49e2c63691d6c1e043" />
+                  <option name="projectId" value="insubriasocial-530c5" />
+                  <option name="projectNumber" value="116753462778" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

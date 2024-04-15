@@ -8,27 +8,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class PaginaAccesso : AppCompatActivity() {
+class PaginaRecuperoPasswordSuccesso : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.pagina_accesso)
+        setContentView(R.layout.activity_pagina_recupero_password_successo)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        //passare alla pagina di registrazione
-        findViewById<TextView>(R.id.textViewVaiPgReg).setOnClickListener {
-            val passReg = Intent(this, PaginaRegistrazione::class.java)
-            startActivity(passReg)
-        }
-
-        //passare alla pagina di recupero password
-        findViewById<TextView>(R.id.recuperoPasswordtxt).setOnClickListener {
-            val passRecPsw = Intent(this, PaginaRecuperoPassword::class.java)
-            startActivity(passRecPsw)
+        findViewById<TextView>(R.id.txtPgAccedi).setOnClickListener {
+            val ritornaAccesso = Intent(this, PaginaAccesso::class.java)
+            startActivity(ritornaAccesso)
         }
     }
 }

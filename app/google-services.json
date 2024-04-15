@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "116753462778",
+    "project_id": "insubriasocial-530c5",
+    "storage_bucket": "insubriasocial-530c5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116753462778:android:4cef49e2c63691d6c1e043",
+        "android_client_info": {
+          "package_name": "it.uninsubria.insubriasocial"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjApoZNIpRoIry_JKQ1o8GftuqnA5Q6lw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

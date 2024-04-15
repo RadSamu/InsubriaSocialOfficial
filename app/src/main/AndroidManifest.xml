@@ -10,14 +10,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.InsubriaSocial"
+        android:theme="@style/Theme.Material3.Light"
         tools:targetApi="31">
         <activity
-            android:name=".PaginaRegistrazione"
+            android:name=".PaginaRecuperoPasswordSuccesso"
             android:exported="false" />
         <activity
+            android:name=".PaginaRecuperoPasswordPt2"
+            android:exported="false" />
+        <activity
+            android:name=".PaginaRecuperoPassword"
+            android:exported="false" />
+        <activity
+            android:name=".PaginaRegistrazione"
+            android:exported="false"
+            android:theme="@style/Theme.Material3.Light.NoActionBar" />
+        <activity
             android:name=".PaginaAccesso"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Material3.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
