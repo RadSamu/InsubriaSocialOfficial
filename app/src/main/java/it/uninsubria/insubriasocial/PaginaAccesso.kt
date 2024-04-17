@@ -2,6 +2,7 @@ package it.uninsubria.insubriasocial
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +30,12 @@ class PaginaAccesso : AppCompatActivity() {
         findViewById<TextView>(R.id.recuperoPasswordtxt).setOnClickListener {
             val passRecPsw = Intent(this, PaginaRecuperoPassword::class.java)
             startActivity(passRecPsw)
+        }
+
+        //accedere all'applicazione
+        findViewById<Button>(R.id.btnAccedi).setOnClickListener {
+            val accesso = Intent(this, PaginaApplicazione::class.java)
+            startActivity(accesso)
         }
     }
 }
