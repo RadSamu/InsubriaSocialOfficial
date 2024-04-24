@@ -1,55 +1,56 @@
 package it.uninsubria.insubriasocial
 
 import android.os.Bundle
+import android.view.inputmethod.InputBinding
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import it.uninsubria.insubriasocial.databinding.ActivityPaginaApplicazioneBinding
 
 class PaginaApplicazione : AppCompatActivity() {
-    private lateinit var bottomNavigationView: BottomNavigationView
+    lateinit var binding: ActivityPaginaApplicazioneBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityPaginaApplicazioneBinding.inflate(layoutInflater)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_pagina_applicazione)
+        setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        bottomNavigationView = findViewById(R.id.bottomNavigationBar)
-        bottomNavigationView.setOnItemSelectedListener { menuItem ->
-            when(menuItem.itemId) {
-                R.id.home -> {
-                    replaceFragment(HomeFragment())
-                    true
-                }
-                R.id.search -> {
-                    replaceFragment(SearchFragment())
-                    true
-                }
-                R.id.map -> {
-                    replaceFragment(MapFragment())
-                    true
-                }
-                R.id.noticeboard -> {
-                    replaceFragment(DashboardFragment())
-                    true
-                }
-                R.id.profile -> {
-                    replaceFragment(ProfileFragment())
-                    true
-                }
-                else -> false
-            }
+        binding.btnHome.setOnClickListener {
+            replaceFragment(HomeFragment())
         }
-        replaceFragment(HomeFragment())
+
+        binding.btnSearch.setOnClickListener {
+            replaceFragment(SearchFragment())
+        }
+
+        binding.btnMappa.setOnClickListener {
+            replaceFragment(MapFragment())
+        }
+
+        binding.btnDashboard.setOnClickListener {
+            replaceFragment(DashboardFragment())
+        }
+
+        binding.btnProfilo.setOnClickListener {
+            replaceFragment(ProfileFragment())
+        }
+
     }
 
-    fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.frame_container, fragment).commit()
+    private fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
+        fragmentTransaction.commit()
     }
 }

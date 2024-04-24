@@ -7,28 +7,106 @@
     android:layout_height="match_parent"
     tools:context=".PaginaApplicazione">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationBar"
-        android:layout_width="0dp"
-        android:layout_height="65dp"
-        android:background="#0B6600"
-        app:itemIconSize="25dp"
-        app:itemIconTint="#FFFFFF"
-        app:itemTextColor="#FFFFFF"
+    <Button
+        android:id="@+id/btnHome"
+        android:layout_width="75dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="3dp"
+        android:backgroundTint="#0B6600"
+        android:padding="2dp"
+        android:text="Home"
+        android:textSize="10dp"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/ic_home"
+        app:iconGravity="top"
+        app:iconPadding="-4dp"
+        app:iconSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSearch"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="75dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="3dp"
+        android:backgroundTint="#0B6600"
+        android:padding="2dp"
+        android:text="Cerca"
+        android:textSize="10sp"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/ic_search"
+        app:iconGravity="top"
+        app:iconPadding="-4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnMappa"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnHome" />
+
+    <Button
+        android:id="@+id/btnDashboard"
+        android:layout_width="75dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="3dp"
+        android:backgroundTint="#0B6600"
+        android:padding="2dp"
+        android:text="Bacheca"
+        android:textSize="10sp"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/ic_dashboard"
+        app:iconGravity="top"
+        app:iconPadding="-4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnProfilo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnMappa" />
+
+    <Button
+        android:id="@+id/btnMappa"
+        android:layout_width="75dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="3dp"
+        android:backgroundTint="#0B6600"
+        android:padding="2dp"
+        android:textSize="10sp"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/ic_map"
+        app:iconGravity="top"
+        app:iconPadding="-4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDashboard"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnSearch"
+        tools:text="Mappa" />
+
+    <Button
+        android:id="@+id/btnProfilo"
+        android:layout_width="75dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="3dp"
+        android:backgroundTint="#0B6600"
+        android:padding="2dp"
+        android:text="Profilo"
+        android:textSize="10sp"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/ic_account"
+        app:iconGravity="top"
+        app:iconPadding="-4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/btm_nav_bar_menu" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnDashboard" />
 
-    <FrameLayout
-        android:id="@+id/frame_container"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="it.uninsubria.insubriasocial.HomeFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationBar"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnHome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
