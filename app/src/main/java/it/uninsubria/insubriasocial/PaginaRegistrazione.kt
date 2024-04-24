@@ -14,12 +14,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.firestore
-
 
 
 class PaginaRegistrazione : AppCompatActivity() {
@@ -56,7 +53,7 @@ class PaginaRegistrazione : AppCompatActivity() {
         auth = Firebase.auth
 // Setting del bottone
         findViewById<Button>(R.id.btnRegistrazione).setOnClickListener {
-            val registra = Intent(this, PaginaApplicazione::class.java)
+            val registra = Intent(this, PaginaApplicazioneHome::class.java)
             val nome = nome.text.toString().trim()
             val cognome = cognome.text.toString().trim()
             val eMail = eMail.text.toString().trim()

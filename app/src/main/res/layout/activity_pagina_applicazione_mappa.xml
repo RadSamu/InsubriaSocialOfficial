@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaginaApplicazioneMappa">
+
+    <Button
+        android:id="@+id/btnProfile3"
+        android:layout_width="75dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="3dp"
+        android:backgroundTint="#0B6600"
+        android:padding="2dp"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/ic_account_alt"
+        app:iconGravity="textStart"
+        app:iconPadding="-2dp"
+        app:iconSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnDashboard3" />
+
+    <Button
+        android:id="@+id/btnMap3"
+        android:layout_width="75dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="#0B6600"
+        android:padding="2dp"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/ic_map"
+        app:iconGravity="textStart"
+        app:iconPadding="-2dp"
+        app:iconSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnDashboard3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnSearch3" />
+
+    <Button
+        android:id="@+id/btnDashboard3"
+        android:layout_width="75dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="3dp"
+        android:backgroundTint="#0B6600"
+        android:padding="2dp"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/ic_dashboard_alt"
+        app:iconGravity="textStart"
+        app:iconPadding="-2dp"
+        app:iconSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnProfile3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnMap3" />
+
+    <Button
+        android:id="@+id/btnHome3"
+        android:layout_width="75dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="3dp"
+        android:backgroundTint="#0B6600"
+        android:padding="2dp"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/ic_home_alt"
+        app:iconGravity="textStart"
+        app:iconPadding="-2dp"
+        app:iconSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSearch3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnSearch3"
+        android:layout_width="75dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="3dp"
+        android:backgroundTint="#0B6600"
+        android:padding="2dp"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/ic_search"
+        app:iconGravity="textStart"
+        app:iconPadding="-2dp"
+        app:iconSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnMap3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnHome3" />
+</androidx.constraintlayout.widget.ConstraintLayout>

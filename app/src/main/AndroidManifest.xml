@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,7 +15,22 @@
         android:theme="@style/Theme.InsubriaSocial"
         tools:targetApi="31">
         <activity
-            android:name=".PaginaApplicazione"
+            android:name=".PaginaApplicazioneProfilo"
+            android:exported="false" />
+        <activity
+            android:name=".PaginaApplicazioneBacheca"
+            android:exported="false" />
+        <activity
+            android:name=".PaginaApplicazioneMappa"
+            android:exported="false" />
+        <activity
+            android:name=".PaginaApplicazioneCerca"
+            android:exported="false" />
+        <activity
+            android:name=".ProvaPagina"
+            android:exported="false" />
+        <activity
+            android:name=".PaginaApplicazioneHome"
             android:exported="false" />
         <activity
             android:name=".PaginaRecuperoPasswordSuccesso"

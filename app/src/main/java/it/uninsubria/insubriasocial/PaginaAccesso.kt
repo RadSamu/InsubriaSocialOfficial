@@ -1,11 +1,8 @@
 package it.uninsubria.insubriasocial
 
 import android.annotation.SuppressLint
-import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -15,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
@@ -57,7 +53,7 @@ class PaginaAccesso : AppCompatActivity() {
 
         // Accedere all'applicazione
         findViewById<Button>(R.id.btnAccedi).setOnClickListener {
-            val accesso = Intent(this, PaginaApplicazione::class.java)
+            val accesso = Intent(this, PaginaApplicazioneHome::class.java)
             val username = logUsername.text.toString().trim()
             val password = logPassword.text.toString().trim()
             var userTrovato: Boolean = false

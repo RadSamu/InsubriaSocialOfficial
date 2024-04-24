@@ -5,107 +5,90 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PaginaApplicazione">
+    tools:context=".PaginaApplicazioneProfilo">
 
     <Button
-        android:id="@+id/btnHome"
+        android:id="@+id/btnHome5"
         android:layout_width="75dp"
         android:layout_height="48dp"
         android:layout_marginBottom="3dp"
         android:backgroundTint="#0B6600"
         android:padding="2dp"
-        android:textSize="10dp"
         app:cornerRadius="4dp"
-        app:icon="@drawable/ic_home"
+        app:icon="@drawable/ic_home_alt"
         app:iconGravity="textStart"
         app:iconPadding="-2dp"
         app:iconSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnSearch"
+        app:layout_constraintEnd_toStartOf="@+id/btnSearch5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btnSearch"
+        android:id="@+id/btnSearch5"
         android:layout_width="75dp"
         android:layout_height="48dp"
         android:layout_marginBottom="3dp"
         android:backgroundTint="#0B6600"
         android:padding="2dp"
-        android:textSize="10sp"
         app:cornerRadius="4dp"
         app:icon="@drawable/ic_search"
         app:iconGravity="textStart"
-        app:iconPadding="-4dp"
+        app:iconPadding="-2dp"
         app:iconSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnMappa"
+        app:layout_constraintEnd_toStartOf="@+id/btnMap5"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnHome" />
+        app:layout_constraintStart_toEndOf="@+id/btnHome5" />
 
     <Button
-        android:id="@+id/btnDashboard"
+        android:id="@+id/btnMap5"
         android:layout_width="75dp"
         android:layout_height="48dp"
         android:layout_marginBottom="3dp"
         android:backgroundTint="#0B6600"
         android:padding="2dp"
-        android:textSize="10sp"
         app:cornerRadius="4dp"
-        app:icon="@drawable/ic_dashboard"
+        app:icon="@drawable/ic_map_alt"
         app:iconGravity="textStart"
-        app:iconPadding="-4dp"
+        app:iconPadding="-2dp"
         app:iconSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnProfilo"
+        app:layout_constraintEnd_toStartOf="@+id/btnDashboard5"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnMappa" />
+        app:layout_constraintStart_toEndOf="@+id/btnSearch5" />
 
     <Button
-        android:id="@+id/btnMappa"
+        android:id="@+id/btnDashboard5"
         android:layout_width="75dp"
         android:layout_height="48dp"
         android:layout_marginBottom="3dp"
         android:backgroundTint="#0B6600"
         android:padding="2dp"
-        android:textSize="10sp"
         app:cornerRadius="4dp"
-        app:icon="@drawable/ic_map"
+        app:icon="@drawable/ic_dashboard_alt"
         app:iconGravity="textStart"
-        app:iconPadding="-4dp"
+        app:iconPadding="-2dp"
         app:iconSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnDashboard"
+        app:layout_constraintEnd_toStartOf="@+id/btnProfile5"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnSearch" />
+        app:layout_constraintStart_toEndOf="@+id/btnMap5" />
 
     <Button
-        android:id="@+id/btnProfilo"
+        android:id="@+id/btnProfile5"
         android:layout_width="75dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="#0B6600"
         android:padding="2dp"
-        android:textSize="10sp"
         app:cornerRadius="4dp"
         app:icon="@drawable/ic_account"
         app:iconGravity="textStart"
-        app:iconPadding="-4dp"
+        app:iconPadding="-2dp"
         app:iconSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnDashboard" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="it.uninsubria.insubriasocial.HomeFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnHome"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintStart_toEndOf="@+id/btnDashboard5" />
 </androidx.constraintlayout.widget.ConstraintLayout>
