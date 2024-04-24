@@ -9,9 +9,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="it.uninsubria.insubriasocial" />
-                  <option name="mobileSdkAppId" value="1:116753462778:android:4cef49e2c63691d6c1e043" />
-                  <option name="projectId" value="insubriasocial-530c5" />
-                  <option name="projectNumber" value="116753462778" />
+                  <option name="mobileSdkAppId" value="1:830947507988:android:1db68a759555b829698c01" />
+                  <option name="projectId" value="insubriasocial-login-register" />
+                  <option name="projectNumber" value="830947507988" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
