@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
+
 class PaginaAccesso : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance()
     val Utenti = db.collection("InsubriaSocial_Utenti")

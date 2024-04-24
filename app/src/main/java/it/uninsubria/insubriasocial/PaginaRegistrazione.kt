@@ -21,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 
 
+
 class PaginaRegistrazione : AppCompatActivity() {
     private val firestore: Any
         get() {
