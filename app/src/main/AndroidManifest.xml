@@ -15,6 +15,9 @@
         android:theme="@style/Theme.InsubriaSocial"
         tools:targetApi="31">
         <activity
+            android:name=".PaginaAggiungiBacheca"
+            android:exported="false" />
+        <activity
             android:name=".PaginaApplicazioneProfilo"
             android:exported="false" />
         <activity
