@@ -1,6 +1,8 @@
 package it.uninsubria.insubriasocial
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,5 +18,10 @@ class PaginaAggiungiBacheca : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+            findViewById<Button>(R.id.btnIndietro).setOnClickListener{
+                val pgApplicazioneBacheca = Intent(this, PaginaApplicazioneBacheca::class.java)
+                startActivity(pgApplicazioneBacheca)
+            }
+
     }
 }

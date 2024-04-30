@@ -38,5 +38,10 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
             val pgProfilo = Intent(this, PaginaApplicazioneProfilo::class.java)
             startActivity(pgProfilo)
         }
+
+        findViewById<Button>(R.id.btnAdd).setOnClickListener{
+            val pgAggiungiBacheca = Intent(this, PaginaAggiungiBacheca::class.java)
+            startActivity(pgAggiungiBacheca)
+        }
     }
 }
