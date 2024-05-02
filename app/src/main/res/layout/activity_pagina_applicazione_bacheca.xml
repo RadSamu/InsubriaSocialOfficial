@@ -1,96 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PaginaApplicazioneBacheca">
-
-    <Button
-        android:id="@+id/btnHome4"
-        android:layout_width="75dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="3dp"
-        android:backgroundTint="#0B6600"
-        android:padding="2dp"
-        app:cornerRadius="4dp"
-        app:icon="@drawable/ic_home_alt"
-        app:iconGravity="textStart"
-        app:iconPadding="-2dp"
-        app:iconSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnSearch4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnSearch4"
-        android:layout_width="75dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="3dp"
-        android:backgroundTint="#0B6600"
-        android:padding="2dp"
-        app:cornerRadius="4dp"
-        app:icon="@drawable/ic_search"
-        app:iconGravity="textStart"
-        app:iconPadding="-2dp"
-        app:iconSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnMap4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnHome4" />
-
-    <Button
-        android:id="@+id/btnMap4"
-        android:layout_width="75dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="3dp"
-        android:backgroundTint="#0B6600"
-        android:padding="2dp"
-        app:cornerRadius="4dp"
-        app:icon="@drawable/ic_map_alt"
-        app:iconGravity="textStart"
-        app:iconPadding="-2dp"
-        app:iconSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnDashboard4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnSearch4" />
-
-    <Button
-        android:id="@+id/btnDashboard4"
-        android:layout_width="75dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="3dp"
-        android:backgroundTint="#0B6600"
-        android:padding="2dp"
-        app:cornerRadius="4dp"
-        app:icon="@drawable/ic_dashboard"
-        app:iconGravity="textStart"
-        app:iconPadding="-2dp"
-        app:iconSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnProfile4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnMap4" />
-
-    <Button
-        android:id="@+id/btnProfile4"
-        android:layout_width="75dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="3dp"
-        android:backgroundTint="#0B6600"
-        android:padding="2dp"
-        app:cornerRadius="4dp"
-        app:icon="@drawable/ic_account_alt"
-        app:iconGravity="textStart"
-        app:iconPadding="-2dp"
-        app:iconSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnDashboard4" />
 
     <Button
         android:id="@+id/btnAdd"
@@ -118,18 +34,30 @@
         android:layout_marginStart="114dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="114dp"
-        android:layout_marginBottom="607dp"
         android:text="BACHECA"
         android:textColor="#000000"
         android:textSize="40dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnSearch4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navBar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:barrierDirection="top" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/navigation_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/btm_nav_bar_menu"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@drawable/item_selector"
+        app:itemRippleColor="@android:color/transparent"
+        app:labelVisibilityMode="unlabeled" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

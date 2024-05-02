@@ -7,8 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class PaginaApplicazioneProfilo : AppCompatActivity() {
+    private lateinit var btmNav: BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -19,24 +21,31 @@ class PaginaApplicazioneProfilo : AppCompatActivity() {
             insets
         }
 
-        findViewById<Button>(R.id.btnHome5).setOnClickListener {
-            val pgHome = Intent(this, PaginaApplicazioneHome::class.java)
-            startActivity(pgHome)
-        }
-
-        findViewById<Button>(R.id.btnSearch5).setOnClickListener {
-            val pgCerca = Intent(this, PaginaApplicazioneCerca::class.java)
-            startActivity(pgCerca)
-        }
-
-        findViewById<Button>(R.id.btnMap5).setOnClickListener {
-            val pgMappa = Intent(this, PaginaApplicazioneMappa::class.java)
-            startActivity(pgMappa)
-        }
-
-        findViewById<Button>(R.id.btnDashboard5).setOnClickListener {
-            val pgBacheca = Intent(this, PaginaApplicazioneBacheca::class.java)
-            startActivity(pgBacheca)
+        btmNav = findViewById(R.id.navBar)
+        btmNav.setOnItemSelectedListener {
+            item -> when(item.itemId) {
+                R.id.home -> {
+                    val intentHome = Intent(this, PaginaApplicazioneHome::class.java)
+                    startActivity(intentHome)
+                    true
+                }
+                R.id.search -> {
+                    val intentSearch = Intent(this, PaginaApplicazioneCerca::class.java)
+                    startActivity(intentSearch)
+                    true
+                }
+                R.id.dashboard -> {
+                    val intentDashboard = Intent(this, PaginaApplicazioneBacheca::class.java)
+                    startActivity(intentDashboard)
+                    true
+                }
+                R.id.profile -> {
+                    val intentProfile = Intent(this, PaginaApplicazioneProfilo::class.java)
+                    startActivity(intentProfile)
+                    true
+                }
+                else -> false
+            }
         }
     }
 }

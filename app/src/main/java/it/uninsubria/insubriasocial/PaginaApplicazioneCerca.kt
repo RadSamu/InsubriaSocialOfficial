@@ -7,8 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class PaginaApplicazioneCerca : AppCompatActivity() {
+    private lateinit var btmNav: BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -19,25 +21,31 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
             insets
         }
 
-        findViewById<Button>(R.id.btnHome2).setOnClickListener {
-            val pgHome = Intent(this, PaginaApplicazioneHome::class.java)
-            startActivity(pgHome)
+        btmNav = findViewById(R.id.navBar)
+        btmNav.setOnItemSelectedListener {
+            item -> when(item.itemId) {
+                R.id.home -> {
+                    val intentHome = Intent(this, PaginaApplicazioneHome::class.java)
+                    startActivity(intentHome)
+                    true
+                }
+                R.id.search -> {
+                    val intentSearch = Intent(this, PaginaApplicazioneCerca::class.java)
+                    startActivity(intentSearch)
+                    true
+                }
+                R.id.dashboard -> {
+                    val intentDashboard = Intent(this, PaginaApplicazioneBacheca::class.java)
+                    startActivity(intentDashboard)
+                    true
+                }
+                R.id.profile -> {
+                    val intentProfile = Intent(this, PaginaApplicazioneProfilo::class.java)
+                    startActivity(intentProfile)
+                    true
+                }
+                else -> false
+            }
         }
-
-        findViewById<Button>(R.id.btnMap2).setOnClickListener {
-            val pgMappa = Intent(this, PaginaApplicazioneMappa::class.java)
-            startActivity(pgMappa)
-        }
-
-        findViewById<Button>(R.id.btnDashboard2).setOnClickListener {
-            val pgBacheca = Intent(this, PaginaApplicazioneBacheca::class.java)
-            startActivity(pgBacheca)
-        }
-
-        findViewById<Button>(R.id.btnProfile2).setOnClickListener {
-            val pgProfilo = Intent(this, PaginaApplicazioneProfilo::class.java)
-            startActivity(pgProfilo)
-        }
-
     }
 }

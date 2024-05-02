@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -7,88 +8,64 @@
     android:layout_height="match_parent"
     tools:context=".PaginaApplicazioneProfilo">
 
-    <Button
-        android:id="@+id/btnHome5"
-        android:layout_width="75dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="3dp"
-        android:backgroundTint="#0B6600"
-        android:padding="2dp"
-        app:cornerRadius="4dp"
-        app:icon="@drawable/ic_home_alt"
-        app:iconGravity="textStart"
-        app:iconPadding="-2dp"
-        app:iconSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnSearch5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        app:srcCompat="@drawable/ic_account"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="97dp" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="122dp" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PROFILO"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="30dp" />
 
     <Button
-        android:id="@+id/btnSearch5"
-        android:layout_width="75dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="3dp"
+        android:id="@+id/button3"
+        android:layout_width="45dp"
+        android:layout_height="50dp"
         android:backgroundTint="#0B6600"
-        android:padding="2dp"
         app:cornerRadius="4dp"
-        app:icon="@drawable/ic_search"
+        app:icon="@drawable/ic_impostazioni"
         app:iconGravity="textStart"
         app:iconPadding="-2dp"
         app:iconSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnMap5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnHome5" />
+        tools:layout_editor_absoluteX="314dp"
+        tools:layout_editor_absoluteY="115dp" />
 
-    <Button
-        android:id="@+id/btnMap5"
-        android:layout_width="75dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="3dp"
-        android:backgroundTint="#0B6600"
-        android:padding="2dp"
-        app:cornerRadius="4dp"
-        app:icon="@drawable/ic_map_alt"
-        app:iconGravity="textStart"
-        app:iconPadding="-2dp"
-        app:iconSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnDashboard5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnSearch5" />
-
-    <Button
-        android:id="@+id/btnDashboard5"
-        android:layout_width="75dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="3dp"
-        android:backgroundTint="#0B6600"
-        android:padding="2dp"
-        app:cornerRadius="4dp"
-        app:icon="@drawable/ic_dashboard_alt"
-        app:iconGravity="textStart"
-        app:iconPadding="-2dp"
-        app:iconSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnProfile5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnMap5" />
-
-    <Button
-        android:id="@+id/btnProfile5"
-        android:layout_width="75dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="3dp"
-        android:backgroundTint="#0B6600"
-        android:padding="2dp"
-        app:cornerRadius="4dp"
-        app:icon="@drawable/ic_account"
-        app:iconGravity="textStart"
-        app:iconPadding="-2dp"
-        app:iconSize="30dp"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/navigation_bar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnDashboard5" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/btm_nav_bar_menu"
+        app:itemIconSize="30dp"
+        app:itemIconTint="@drawable/item_selector"
+        app:itemRippleColor="@android:color/transparent"
+        app:labelVisibilityMode="unlabeled" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
