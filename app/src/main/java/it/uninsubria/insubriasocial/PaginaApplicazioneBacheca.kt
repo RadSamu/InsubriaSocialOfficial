@@ -48,8 +48,10 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
             }
         }
 
+        val currentUser = intent.getStringExtra("currentUser")
         findViewById<Button>(R.id.btnAdd).setOnClickListener{
             val pgAggiungiBacheca = Intent(this, PaginaAggiungiBacheca::class.java)
+                .putExtra("currentUser", currentUser)
             startActivity(pgAggiungiBacheca)
         }
     }

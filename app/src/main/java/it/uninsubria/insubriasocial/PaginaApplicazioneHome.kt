@@ -22,6 +22,7 @@ class PaginaApplicazioneHome : AppCompatActivity() {
             insets
         }
 
+
         btmNav = findViewById(R.id.navBar)
         btmNav.setOnItemSelectedListener {
             item -> when(item.itemId) {
@@ -36,7 +37,9 @@ class PaginaApplicazioneHome : AppCompatActivity() {
                     true
                 }
                 R.id.dashboard -> {
+                    val currentUser = intent.getStringExtra("currentUser")
                     val intentDashboard = Intent(this, PaginaApplicazioneBacheca::class.java)
+                        .putExtra("currentUser", currentUser)
                     startActivity(intentDashboard)
                     true
                 }

@@ -35,7 +35,7 @@ class PaginaRecuperoPassword : AppCompatActivity() {
         findViewById<Button>(R.id.btnAvanti).setOnClickListener {
             eMail = findViewById<EditText>(R.id.editTextTextEmailAddress2)
             val userEMail = eMail.text.toString().trim()
-            val intent: Intent = Intent(this, PaginaRecuperoPasswordPt2::class.java).apply {
+            val intent = Intent(this, PaginaRecuperoPasswordPt2::class.java).apply {
                 putExtra("eMail", userEMail)
             }
 

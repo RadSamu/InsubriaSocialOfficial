@@ -53,11 +53,12 @@ class PaginaAccesso : AppCompatActivity() {
 
         // Accedere all'applicazione
         findViewById<Button>(R.id.btnAccedi).setOnClickListener {
-            val accesso = Intent(this, PaginaApplicazioneHome::class.java)
+
             val username = logUsername.text.toString().trim()
             val password = logPassword.text.toString().trim()
             var userTrovato: Boolean = false
             var pswTrovato: Boolean = false
+            var currentUser = ""
 
             // Controllo delle credenziali nel DB
                 // Check user
@@ -70,11 +71,14 @@ class PaginaAccesso : AppCompatActivity() {
                         val logUser = document.getString("username")
                         if(logUser == username){
                             userTrovato = true
+                            currentUser = logUser
                         }
                     }
 
                 }
+
             }
+
 
                 // Check psw
             val myQuery2: Query =
@@ -89,6 +93,9 @@ class PaginaAccesso : AppCompatActivity() {
                         }
                     }
                 }
+
+                val accesso = Intent(this, PaginaApplicazioneHome::class.java)
+                    .putExtra("currentUser", currentUser)
 
                 // Check login permit
                 if(userTrovato && pswTrovato){
@@ -107,16 +114,11 @@ class PaginaAccesso : AppCompatActivity() {
                 }
                 }
 
-
-
             }
 
 
 
     }
-
-
-
 
 
 
