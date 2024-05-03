@@ -1,5 +1,6 @@
 package it.uninsubria.insubriasocial
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -13,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class PaginaApplicazioneHome : AppCompatActivity() {
     private lateinit var btmNav: BottomNavigationView
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

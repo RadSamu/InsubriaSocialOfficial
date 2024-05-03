@@ -92,12 +92,12 @@ class PaginaAccesso : AppCompatActivity() {
 
                 // Check login permit
                 if(userTrovato && pswTrovato){
-                    startActivity(accesso)
                     Toast.makeText(
                         this,
                         "Accesso effettuato con successo!",
                         Toast.LENGTH_SHORT,
                     ).show()
+                    startActivity(accesso)
                 }else{
                     Toast.makeText(
                         this,
