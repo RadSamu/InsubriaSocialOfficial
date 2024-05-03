@@ -25,6 +25,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/btm_nav_bar_menu" />
 
+    <ListView
+        android:id="@+id/simpleListView"
+        android:layout_width="417dp"
+        android:layout_height="659dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-3dp"
+        tools:layout_editor_absoluteY="0dp"></ListView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

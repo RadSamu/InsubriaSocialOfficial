@@ -2,15 +2,20 @@ package it.uninsubria.insubriasocial
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.ListView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class PaginaApplicazioneBacheca : AppCompatActivity() {
     private lateinit var btmNav: BottomNavigationView
+    val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,6 +25,44 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val currentUser = intent.getStringExtra("currentUser")
+        var annuncio = ""
+        val listView: ListView = findViewById(R.id.simpleListView2)
+        val annunci = arrayListOf<String>()
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, annunci)
+        listView.adapter = adapter
+
+        // query
+        val queryRefresh: Query =
+            db.collection("InsubriaSocial_Annunci")
+                .orderBy("data", Query.Direction.DESCENDING)
+        queryRefresh.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                for (document in task.result) {
+                    val autore  = document.getString("autore")
+                    val data = document.getString("data")
+                    val titolo = document.getString("titolo")
+                    val descrizione = document.getString("descrizione")
+                    if(currentUser == autore){
+                        annuncio = annuncio + "\n$data"
+                        annuncio = annuncio + "\n"
+                        annuncio = annuncio + "\n$titolo:"
+                        annuncio = annuncio + "\n$descrizione"
+                        annuncio = annuncio + "\n"
+                        annuncio = annuncio + "\n-$autore"
+                        annunci.add(annuncio)
+                        annuncio = ""
+                    }
+                }
+                }
+
+            }
+
+            adapter.notifyDataSetChanged()
+
+            listView.setOnItemClickListener { parent, view, position, id ->
+                val selectedItem = parent.getItemAtPosition(position).toString()
+            }
 
         btmNav = findViewById(R.id.navBar)
         btmNav.setOnItemSelectedListener {
@@ -48,7 +91,7 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
             }
         }
 
-        val currentUser = intent.getStringExtra("currentUser")
+
         findViewById<Button>(R.id.btnAdd).setOnClickListener{
             val pgAggiungiBacheca = Intent(this, PaginaAggiungiBacheca::class.java)
                 .putExtra("currentUser", currentUser)
