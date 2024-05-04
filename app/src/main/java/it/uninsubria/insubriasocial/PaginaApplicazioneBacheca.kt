@@ -1,5 +1,6 @@
 package it.uninsubria.insubriasocial
 
+import android.R.layout.simple_list_item_1
 import android.R.layout.simple_list_item_2
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -32,78 +33,85 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
         }
 
         val currentUser = intent.getStringExtra("currentUser")
-        var annuncioBacheca = ""
-        val listViewBacheca: ListView = findViewById(R.id.simpleListView2)
-        val annunciBacheca = arrayListOf<String>()
-        val adapterBacheca = ArrayAdapter(this, android.R.layout.simple_list_item_1, annunciBacheca)
-        listViewBacheca.adapter = adapterBacheca
+
+        var annuncio = ""
+        val listView: ListView = findViewById(R.id.simpleListViewBacheca)
+        val annunci = arrayListOf<String>()
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, annunci)
+        listView.adapter = adapter
 
         // query
-        val queryRefreshBacheca: Query =
+        val queryRefresh: Query =
             db.collection("InsubriaSocial_Annunci")
                 .orderBy("data", Query.Direction.DESCENDING)
-        queryRefreshBacheca.get().addOnCompleteListener { task ->
+        queryRefresh.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 for (document in task.result) {
-                    val autore  = document.getString("autore")
                     val data = document.getString("data")
                     val titolo = document.getString("titolo")
                     val descrizione = document.getString("descrizione")
+                    val autore = document.getString("autore")
                     if(autore == currentUser){
-                        annuncioBacheca = annuncioBacheca + "\n$data"
-                        annuncioBacheca = annuncioBacheca + "\n"
-                        annuncioBacheca = annuncioBacheca + "\n$titolo:"
-                        annuncioBacheca = annuncioBacheca + "\n$descrizione"
-                        annuncioBacheca = annuncioBacheca + "\n"
-                        annuncioBacheca = annuncioBacheca + "\n-$autore"
-                        annunciBacheca.add(annuncioBacheca)
-                        annuncioBacheca = ""
+                        annuncio = annuncio + "\n$data"
+                        annuncio = annuncio + "\n"
+                        annuncio = annuncio + "\n$titolo:"
+                        annuncio = annuncio + "\n$descrizione"
+                        annuncio = annuncio + "\n"
+                        annuncio = annuncio + "\n-$autore"
+                        annunci.add(annuncio)
+                        annuncio = ""
                     }
-                }
+
                 }
 
-        }
-            adapterBacheca.notifyDataSetChanged()
+            }
 
-            listViewBacheca.setOnItemClickListener { parent, view, position, id ->
+
+            adapter.notifyDataSetChanged()
+
+            listView.setOnItemClickListener { parent, view, position, id ->
                 val selectedItem = parent.getItemAtPosition(position).toString()
             }
 
 
+            btmNav = findViewById(R.id.navBar)
+            btmNav.setOnItemSelectedListener { item ->
+                when (item.itemId) {
+                    R.id.home -> {
+                        val intentHome = Intent(this, PaginaApplicazioneHome::class.java)
+                        startActivity(intentHome)
+                        true
+                    }
 
-        btmNav = findViewById(R.id.navBar)
-        btmNav.setOnItemSelectedListener {
-            item -> when(item.itemId) {
-                R.id.home -> {
-                    val intentHome = Intent(this, PaginaApplicazioneHome::class.java)
-                    startActivity(intentHome)
-                    true
+                    R.id.search -> {
+                        val intentSearch = Intent(this, PaginaApplicazioneCerca::class.java)
+                        startActivity(intentSearch)
+                        true
+                    }
+
+                    R.id.dashboard -> {
+                        val intentDashboard = Intent(this, PaginaApplicazioneBacheca::class.java)
+                        startActivity(intentDashboard)
+                        true
+                    }
+
+                    R.id.profile -> {
+                        val intentProfile = Intent(this, PaginaApplicazioneProfilo::class.java)
+                        startActivity(intentProfile)
+                        true
+                    }
+
+                    else -> false
                 }
-                R.id.search -> {
-                    val intentSearch = Intent(this, PaginaApplicazioneCerca::class.java)
-                    startActivity(intentSearch)
-                    true
-                }
-                R.id.dashboard -> {
-                    val intentDashboard = Intent(this, PaginaApplicazioneBacheca::class.java)
-                    startActivity(intentDashboard)
-                    true
-                }
-                R.id.profile -> {
-                    val intentProfile = Intent(this, PaginaApplicazioneProfilo::class.java)
-                    startActivity(intentProfile)
-                    true
-                }
-                else -> false
             }
+
+
+            findViewById<Button>(R.id.btnAdd).setOnClickListener {
+                val pgAggiungiBacheca = Intent(this, PaginaAggiungiBacheca::class.java)
+                    .putExtra("currentUser", currentUser)
+                startActivity(pgAggiungiBacheca)
+            }
+
         }
-
-
-findViewById<Button>(R.id.btnAdd).setOnClickListener{
-    val pgAggiungiBacheca = Intent(this, PaginaAggiungiBacheca::class.java)
-        .putExtra("currentUser", currentUser)
-    startActivity(pgAggiungiBacheca)
-}
-
     }
 }

@@ -59,15 +59,12 @@
         app:menu="@menu/btm_nav_bar_menu" />
 
     <ListView
-        android:id="@+id/simpleListView2"
-        android:layout_width="408dp"
-        android:layout_height="341dp"
-        android:layout_marginBottom="104dp"
-        app:layout_constraintBottom_toBottomOf="@+id/navBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/simpleListViewBacheca"
+        android:layout_width="410dp"
+        android:layout_height="439dp"
+        app:layout_constraintBottom_toTopOf="@+id/navBar"
         app:layout_constraintTop_toBottomOf="@+id/btnAdd"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-3dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
