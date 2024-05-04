@@ -12,7 +12,6 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
         android:backgroundTint="#0B6600"
         android:padding="2dp"
@@ -61,10 +60,14 @@
 
     <ListView
         android:id="@+id/simpleListView2"
-        android:layout_width="409dp"
-        android:layout_height="478dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="135dp"></ListView>
+        android:layout_width="408dp"
+        android:layout_height="341dp"
+        android:layout_marginBottom="104dp"
+        app:layout_constraintBottom_toBottomOf="@+id/navBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAdd"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

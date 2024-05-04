@@ -1,10 +1,13 @@
 package it.uninsubria.insubriasocial
 
+import android.R.layout.simple_list_item_2
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -16,6 +19,8 @@ import com.google.firebase.firestore.Query
 class PaginaApplicazioneBacheca : AppCompatActivity() {
     private lateinit var btmNav: BottomNavigationView
     val db = FirebaseFirestore.getInstance()
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,44 +30,46 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         val currentUser = intent.getStringExtra("currentUser")
-        var annuncio = ""
-        val listView: ListView = findViewById(R.id.simpleListView2)
-        val annunci = arrayListOf<String>()
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, annunci)
-        listView.adapter = adapter
+        var annuncioBacheca = ""
+        val listViewBacheca: ListView = findViewById(R.id.simpleListView2)
+        val annunciBacheca = arrayListOf<String>()
+        val adapterBacheca = ArrayAdapter(this, android.R.layout.simple_list_item_1, annunciBacheca)
+        listViewBacheca.adapter = adapterBacheca
 
         // query
-        val queryRefresh: Query =
+        val queryRefreshBacheca: Query =
             db.collection("InsubriaSocial_Annunci")
                 .orderBy("data", Query.Direction.DESCENDING)
-        queryRefresh.get().addOnCompleteListener { task ->
+        queryRefreshBacheca.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 for (document in task.result) {
                     val autore  = document.getString("autore")
                     val data = document.getString("data")
                     val titolo = document.getString("titolo")
                     val descrizione = document.getString("descrizione")
-                    if(currentUser == autore){
-                        annuncio = annuncio + "\n$data"
-                        annuncio = annuncio + "\n"
-                        annuncio = annuncio + "\n$titolo:"
-                        annuncio = annuncio + "\n$descrizione"
-                        annuncio = annuncio + "\n"
-                        annuncio = annuncio + "\n-$autore"
-                        annunci.add(annuncio)
-                        annuncio = ""
+                    if(autore == currentUser){
+                        annuncioBacheca = annuncioBacheca + "\n$data"
+                        annuncioBacheca = annuncioBacheca + "\n"
+                        annuncioBacheca = annuncioBacheca + "\n$titolo:"
+                        annuncioBacheca = annuncioBacheca + "\n$descrizione"
+                        annuncioBacheca = annuncioBacheca + "\n"
+                        annuncioBacheca = annuncioBacheca + "\n-$autore"
+                        annunciBacheca.add(annuncioBacheca)
+                        annuncioBacheca = ""
                     }
                 }
                 }
 
-            }
+        }
+            adapterBacheca.notifyDataSetChanged()
 
-            adapter.notifyDataSetChanged()
-
-            listView.setOnItemClickListener { parent, view, position, id ->
+            listViewBacheca.setOnItemClickListener { parent, view, position, id ->
                 val selectedItem = parent.getItemAtPosition(position).toString()
             }
+
+
 
         btmNav = findViewById(R.id.navBar)
         btmNav.setOnItemSelectedListener {
@@ -92,10 +99,11 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
         }
 
 
-        findViewById<Button>(R.id.btnAdd).setOnClickListener{
-            val pgAggiungiBacheca = Intent(this, PaginaAggiungiBacheca::class.java)
-                .putExtra("currentUser", currentUser)
-            startActivity(pgAggiungiBacheca)
-        }
+findViewById<Button>(R.id.btnAdd).setOnClickListener{
+    val pgAggiungiBacheca = Intent(this, PaginaAggiungiBacheca::class.java)
+        .putExtra("currentUser", currentUser)
+    startActivity(pgAggiungiBacheca)
+}
+
     }
 }
