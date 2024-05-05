@@ -35,6 +35,11 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
         val currentUser = intent.getStringExtra("currentUser")
 
         var annuncio = ""
+        var data = ""
+        var titolo = ""
+        var descrizione = ""
+        var autore = ""
+
         val listView: ListView = findViewById(R.id.simpleListViewBacheca)
         val annunci = arrayListOf<String>()
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, annunci)
@@ -47,10 +52,10 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
         queryRefresh.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 for (document in task.result) {
-                    val data = document.getString("data")
-                    val titolo = document.getString("titolo")
-                    val descrizione = document.getString("descrizione")
-                    val autore = document.getString("autore")
+                    data = document.getString("data")!!
+                    titolo = document.getString("titolo")!!
+                    descrizione = document.getString("descrizione")!!
+                    autore = document.getString("autore")!!
                     if(autore == currentUser){
                         annuncio = annuncio + "\n$data"
                         annuncio = annuncio + "\n"
@@ -71,6 +76,17 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
 
             listView.setOnItemClickListener { parent, view, position, id ->
                 val selectedItem = parent.getItemAtPosition(position).toString()
+                val sottostringhe = selectedItem.split("\n")
+                val data1 = sottostringhe[1].toString()
+                val titolo1 = sottostringhe[3].toString()
+                val descrizione1 = sottostringhe[4].toString()
+
+                val pgModificaAnnuncio = Intent(this, PaginaModificaAnnuncio::class.java)
+                    .putExtra("data",data1)
+                    .putExtra("titolo",titolo1)
+                    .putExtra("descrizione",descrizione1)
+
+                startActivity(pgModificaAnnuncio)
             }
 
 
