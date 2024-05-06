@@ -85,7 +85,6 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
                     .putExtra("data",data1)
                     .putExtra("titolo",titolo1)
                     .putExtra("descrizione",descrizione1)
-
                 startActivity(pgModificaAnnuncio)
             }
 

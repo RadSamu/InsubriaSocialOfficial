@@ -10,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.addTextChangedListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
@@ -35,11 +36,18 @@ class PaginaModificaAnnuncio : AppCompatActivity() {
         findViewById<EditText>(R.id.editTextText).setText(data)
         findViewById<EditText>(R.id.editTextText2).setText(titolo)
         findViewById<EditText>(R.id.editTextText3).setText(descrizione)
-
-        val nuovaData = findViewById<EditText>(R.id.editTextText).text.toString()
-        val nuovoTitolo = findViewById<EditText>(R.id.editTextText2).text.toString()
-        val nuovaDescrizione = findViewById<EditText>(R.id.editTextText3).text.toString()
-
+        var nuovaData = ""
+        var nuovoTitolo = ""
+        var nuovaDescrizione = ""
+        findViewById<EditText>(R.id.editTextText).addTextChangedListener{
+            nuovaData = findViewById<EditText>(R.id.editTextText).text.toString()
+        }
+        findViewById<EditText>(R.id.editTextText2).addTextChangedListener {
+            nuovoTitolo = findViewById<EditText>(R.id.editTextText2).text.toString()
+        }
+        findViewById<EditText>(R.id.editTextText3).addTextChangedListener {
+            nuovaDescrizione = findViewById<EditText>(R.id.editTextText3).text.toString()
+        }
         findViewById<Button>(R.id.btnSalva).setOnClickListener{
             val salvaModifica = Intent(this, PaginaApplicazioneBacheca::class.java)
 
@@ -49,26 +57,25 @@ class PaginaModificaAnnuncio : AppCompatActivity() {
             editQuery.get().addOnCompleteListener{task ->
                 if(task.isSuccessful){
                     for(document in task.result){
-                        if(!nuovaData.isEmpty() && !nuovoTitolo.isEmpty() && !nuovaDescrizione.isEmpty()){
-                            val update: MutableMap<String, Any> = HashMap()
-                            update["descrizione"] = nuovaDescrizione
-                            //update["data"] = nuovaData
-                            //update["titolo"] = nuovoTitolo
-                            Annunci.document(document.id).set(update, SetOptions.merge())
-                            Toast.makeText(
-                                this,
-                                "Annuncio modificato con successo!",
-                                Toast.LENGTH_SHORT,
-                            ).show()
-                            startActivity(salvaModifica)
-                        }else{
-                            Toast.makeText(
-                                this,
-                                "Errore, controlla i campi e riprova!",
-                                Toast.LENGTH_SHORT,
-                            ).show()
-                        }
+
+                        val idDoc = document.id
+                        val modifica = db.collection("InsubriaSocial_Annunci").document(idDoc)
+                        val campiAggiornati = hashMapOf(
+                            "data" to nuovaData,
+                            "titolo" to nuovoTitolo,
+                            "descrizione" to nuovaDescrizione
+                        )
+                        modifica.update(campiAggiornati as Map<String, Any>)
+                            .addOnSuccessListener {
+                                Toast.makeText(
+                                    this,
+                                    "Annuncio modificato con successo!",
+                                    Toast.LENGTH_SHORT,
+                                ).show()
+                                startActivity(salvaModifica)
+                            }
                     }
+
                 }
             }
         }
