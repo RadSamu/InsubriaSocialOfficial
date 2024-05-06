@@ -2,6 +2,7 @@ package it.uninsubria.insubriasocial
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.SearchView
@@ -9,9 +10,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.contains
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import io.grpc.Context
 
 class PaginaApplicazioneCerca : AppCompatActivity() {
     private lateinit var btmNav: BottomNavigationView
@@ -35,27 +38,9 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
 
         barraRicerca.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                val queryCerca: Query =
-                    db.collection("InsubriaSocial_Utenti")
-                        .whereEqualTo("username", query)
-                queryCerca.get().addOnCompleteListener{task ->
-                    if(task.isSuccessful){
-                        for(document in task.result){
-                            val trovato = document.getString("username")
-                            user = user + "$trovato"
-                            profili.add(user)
-                            user = ""
-
-                        }
-                    }
-                    adapter.notifyDataSetChanged()
-                    listView.setOnItemClickListener { parent, view, position, id ->
-                        val selectedItem = parent.getItemAtPosition(position).toString()
-                    }
-                }
+                adapter.notifyDataSetChanged()
                 return true
             }
-
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 val queryCerca: Query =
@@ -68,10 +53,13 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
                             user = user + "$trovato"
                             profili.add(user)
                             user = ""
-
                         }
                     }
                     adapter.notifyDataSetChanged()
+                    if(newText == ""){
+                        adapter.clear()
+                        adapter.notifyDataSetChanged()
+                    }
                     listView.setOnItemClickListener { parent, view, position, id ->
                         val selectedItem = parent.getItemAtPosition(position).toString()
                     }

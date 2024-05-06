@@ -56,7 +56,6 @@ class PaginaApplicazioneHome : AppCompatActivity() {
 
             }
 
-
             adapter.notifyDataSetChanged()
 
             listView.setOnItemClickListener { parent, view, position, id ->
@@ -87,7 +86,9 @@ class PaginaApplicazioneHome : AppCompatActivity() {
                     }
 
                     R.id.profile -> {
+                        val currentUser = intent.getStringExtra("currentUser")
                         val intentProfile = Intent(this, PaginaApplicazioneProfilo::class.java)
+                            .putExtra("currentUser", currentUser)
                         startActivity(intentProfile)
                         true
                     }

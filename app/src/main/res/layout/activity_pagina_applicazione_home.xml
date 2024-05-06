@@ -27,11 +27,28 @@
 
     <ListView
         android:id="@+id/simpleListView"
-        android:layout_width="417dp"
-        android:layout_height="659dp"
+        android:layout_width="410dp"
+        android:layout_height="558dp"
+        android:layout_marginTop="84dp"
+        app:layout_constraintBottom_toTopOf="@+id/navBar"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-3dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="114dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="114dp"
+        android:text="ANNUNCI"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

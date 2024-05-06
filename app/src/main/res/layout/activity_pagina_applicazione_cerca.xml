@@ -27,14 +27,14 @@
 
     <SearchView
         android:id="@+id/SearchView"
-        android:layout_width="380dp"
-        android:layout_height="65dp"
+        android:layout_width="321dp"
+        android:layout_height="63dp"
         android:layout_marginStart="14dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="14dp"
         android:queryHint="Cerca..."
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.032"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,5 +47,20 @@
         app:layout_constraintVertical_bias="0.816"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/btnFiltro"
+        android:layout_width="51dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#0B6600"
+        app:cornerRadius="4dp"
+        app:iconGravity="textStart"
+        app:iconPadding="-2dp"
+        app:iconSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
