@@ -43,32 +43,55 @@ class PaginaModificaAnnuncio : AppCompatActivity() {
         findViewById<Button>(R.id.btnSalva).setOnClickListener{
             val salvaModifica = Intent(this, PaginaApplicazioneBacheca::class.java)
 
-            val queryEdit: Query =
+            val editQuery: Query =
                 db.collection("InsubriaSocial_Annunci")
-
-                    .whereEqualTo("data", data)
-                    .whereEqualTo("titolo", titolo)
                     .whereEqualTo("descrizione", descrizione)
-
-            queryEdit.get().addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    for (document in task.result) {
-                        val vecchiaData = document.getString("data")
-                        val vecchioTitolo = document.getString("titolo")
-                        val vecchiaDescrizione = document.getString("descrizione")
-                        if((vecchiaData == data) && (vecchioTitolo == titolo) && (vecchiaDescrizione == descrizione)){
+            editQuery.get().addOnCompleteListener{task ->
+                if(task.isSuccessful){
+                    for(document in task.result){
+                        if(!nuovaData.isEmpty() && !nuovoTitolo.isEmpty() && !nuovaDescrizione.isEmpty()){
                             val update: MutableMap<String, Any> = HashMap()
-                            update["data"] = nuovaData
-                            update["titolo"] = nuovoTitolo
                             update["descrizione"] = nuovaDescrizione
+                            //update["data"] = nuovaData
+                            //update["titolo"] = nuovoTitolo
                             Annunci.document(document.id).set(update, SetOptions.merge())
+                            Toast.makeText(
+                                this,
+                                "Annuncio modificato con successo!",
+                                Toast.LENGTH_SHORT,
+                            ).show()
                             startActivity(salvaModifica)
+                        }else{
+                            Toast.makeText(
+                                this,
+                                "Errore, controlla i campi e riprova!",
+                                Toast.LENGTH_SHORT,
+                            ).show()
                         }
-
                     }
-
                 }
             }
+        }
+
+        findViewById<Button>(R.id.btnElimina).setOnClickListener {
+            val eliminaAnnuncio = Intent(this, PaginaApplicazioneBacheca::class.java)
+            val deleteQuery: Query =
+                db.collection("InsubriaSocial_Annunci")
+                    .whereEqualTo("descrizione", descrizione)
+            deleteQuery.get().addOnCompleteListener{task ->
+                if(task.isSuccessful){
+                    for(document in task.result){
+                        val documentId = document.id
+                        db.collection("InsubriaSocial_Annunci").document(documentId).delete()
+                        Toast.makeText(
+                            this,
+                            "Annuncio cancellato con successo!",
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                    }
+                }
+            }
+            startActivity(eliminaAnnuncio)
         }
 
 

@@ -59,7 +59,7 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
                     if(autore == currentUser){
                         annuncio = annuncio + "\n$data"
                         annuncio = annuncio + "\n"
-                        annuncio = annuncio + "\n$titolo:"
+                        annuncio = annuncio + "\n$titolo"
                         annuncio = annuncio + "\n$descrizione"
                         annuncio = annuncio + "\n"
                         annuncio = annuncio + "\n-$autore"
