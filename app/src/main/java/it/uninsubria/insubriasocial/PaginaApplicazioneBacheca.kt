@@ -1,14 +1,11 @@
 package it.uninsubria.insubriasocial
 
-import android.R.layout.simple_list_item_1
-import android.R.layout.simple_list_item_2
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -32,61 +29,61 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
             insets
         }
 
-        val currentUser = intent.getStringExtra("currentUser")
 
-        var annuncio = ""
-        var data = ""
-        var titolo = ""
-        var descrizione = ""
-        var autore = ""
+            val currentUser = intent.getStringExtra("currentUser")
 
-        val listView: ListView = findViewById(R.id.simpleListViewBacheca)
-        val annunci = arrayListOf<String>()
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, annunci)
-        listView.adapter = adapter
+            var annuncio = ""
+            var data = ""
+            var titolo = ""
+            var descrizione = ""
+            var autore = ""
 
-        // query
-        val queryRefresh: Query =
-            db.collection("InsubriaSocial_Annunci")
-                .orderBy("data", Query.Direction.DESCENDING)
-        queryRefresh.get().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                for (document in task.result) {
-                    data = document.getString("data")!!
-                    titolo = document.getString("titolo")!!
-                    descrizione = document.getString("descrizione")!!
-                    autore = document.getString("autore")!!
-                    if(autore == currentUser){
-                        annuncio = annuncio + "\n$data"
-                        annuncio = annuncio + "\n"
-                        annuncio = annuncio + "\n$titolo"
-                        annuncio = annuncio + "\n$descrizione"
-                        annuncio = annuncio + "\n"
-                        annuncio = annuncio + "\n-$autore"
-                        annunci.add(annuncio)
-                        annuncio = ""
+            val listView: ListView = findViewById(R.id.simpleListViewCerca)
+            val annunci = arrayListOf<String>()
+            val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, annunci)
+            listView.adapter = adapter
+
+            // query
+            val queryRefresh: Query =
+                db.collection("InsubriaSocial_Annunci")
+                    .orderBy("data", Query.Direction.DESCENDING)
+            queryRefresh.get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    for (document in task.result) {
+                        data = document.getString("data")!!
+                        titolo = document.getString("titolo")!!
+                        descrizione = document.getString("descrizione")!!
+                        autore = document.getString("autore")!!
+                        if(autore == currentUser){
+                            annuncio = annuncio + "\n$data"
+                            annuncio = annuncio + "\n"
+                            annuncio = annuncio + "\n$titolo"
+                            annuncio = annuncio + "\n$descrizione"
+                            annuncio = annuncio + "\n"
+                            annuncio = annuncio + "\n-$autore"
+                            annunci.add(annuncio)
+                            annuncio = ""
+                        }
+
                     }
 
                 }
 
-            }
+                adapter.notifyDataSetChanged()
 
+                listView.setOnItemClickListener { parent, view, position, id ->
+                    val selectedItem = parent.getItemAtPosition(position).toString()
+                    val sottostringhe = selectedItem.split("\n")
+                    val data1 = sottostringhe[1].toString()
+                    val titolo1 = sottostringhe[3].toString()
+                    val descrizione1 = sottostringhe[4].toString()
 
-            adapter.notifyDataSetChanged()
-
-            listView.setOnItemClickListener { parent, view, position, id ->
-                val selectedItem = parent.getItemAtPosition(position).toString()
-                val sottostringhe = selectedItem.split("\n")
-                val data1 = sottostringhe[1].toString()
-                val titolo1 = sottostringhe[3].toString()
-                val descrizione1 = sottostringhe[4].toString()
-
-                val pgModificaAnnuncio = Intent(this, PaginaModificaAnnuncio::class.java)
-                    .putExtra("data",data1)
-                    .putExtra("titolo",titolo1)
-                    .putExtra("descrizione",descrizione1)
-                startActivity(pgModificaAnnuncio)
-            }
+                    val pgModificaAnnuncio = Intent(this, PaginaModificaAnnuncio::class.java)
+                        .putExtra("data",data1)
+                        .putExtra("titolo",titolo1)
+                        .putExtra("descrizione",descrizione1)
+                    startActivity(pgModificaAnnuncio)
+                }
 
 
             btmNav = findViewById(R.id.navBar)
@@ -120,13 +117,11 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
                 }
             }
 
-
             findViewById<Button>(R.id.btnAdd).setOnClickListener {
                 val pgAggiungiBacheca = Intent(this, PaginaAggiungiBacheca::class.java)
                     .putExtra("currentUser", currentUser)
                 startActivity(pgAggiungiBacheca)
             }
-
         }
     }
 }

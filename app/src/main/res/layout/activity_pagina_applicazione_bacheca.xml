@@ -59,7 +59,7 @@
         app:menu="@menu/btm_nav_bar_menu" />
 
     <ListView
-        android:id="@+id/simpleListViewBacheca"
+        android:id="@+id/simpleListViewCerca"
         android:layout_width="413dp"
         android:layout_height="388dp"
         app:layout_constraintBottom_toTopOf="@+id/navBar"
@@ -78,7 +78,7 @@
         android:textColor="#000000"
         android:textSize="30dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/simpleListViewBacheca"
+        app:layout_constraintBottom_toTopOf="@+id/simpleListViewCerca"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAdd" />

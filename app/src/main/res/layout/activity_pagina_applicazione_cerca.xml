@@ -25,4 +25,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/btm_nav_bar_menu" />
 
+    <SearchView
+        android:id="@+id/SearchView"
+        android:layout_width="380dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="14dp"
+        android:queryHint="Cerca..."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/simpleListViewCerca"
+        android:layout_width="410dp"
+        android:layout_height="516dp"
+        app:layout_constraintBottom_toTopOf="@+id/navBar"
+        app:layout_constraintTop_toBottomOf="@+id/SearchView"
+        app:layout_constraintVertical_bias="0.816"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
