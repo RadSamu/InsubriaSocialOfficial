@@ -75,22 +75,30 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
         btmNav.setOnItemSelectedListener {
             item -> when(item.itemId) {
                 R.id.home -> {
+                    val currentUser = intent.getStringExtra("currentUser")
                     val intentHome = Intent(this, PaginaApplicazioneHome::class.java)
+                        .putExtra("currentUser", currentUser)
                     startActivity(intentHome)
                     true
                 }
                 R.id.search -> {
+                    val currentUser = intent.getStringExtra("currentUser")
                     val intentSearch = Intent(this, PaginaApplicazioneCerca::class.java)
+                        .putExtra("currentUser", currentUser)
                     startActivity(intentSearch)
                     true
                 }
                 R.id.dashboard -> {
+                    val currentUser = intent.getStringExtra("currentUser")
                     val intentDashboard = Intent(this, PaginaApplicazioneBacheca::class.java)
+                        .putExtra("currentUser", currentUser)
                     startActivity(intentDashboard)
                     true
                 }
                 R.id.profile -> {
+                    val currentUser = intent.getStringExtra("currentUser")
                     val intentProfile = Intent(this, PaginaApplicazioneProfilo::class.java)
+                        .putExtra("currentUser", currentUser)
                     startActivity(intentProfile)
                     true
                 }

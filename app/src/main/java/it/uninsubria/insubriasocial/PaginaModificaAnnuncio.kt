@@ -2,6 +2,8 @@ package it.uninsubria.insubriasocial
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -36,21 +38,11 @@ class PaginaModificaAnnuncio : AppCompatActivity() {
         findViewById<EditText>(R.id.editTextText).setText(data)
         findViewById<EditText>(R.id.editTextText2).setText(titolo)
         findViewById<EditText>(R.id.editTextText3).setText(descrizione)
-        var nuovaData = ""
-        var nuovoTitolo = ""
-        var nuovaDescrizione = ""
-        findViewById<EditText>(R.id.editTextText).addTextChangedListener{
-            nuovaData = findViewById<EditText>(R.id.editTextText).text.toString()
-        }
-        findViewById<EditText>(R.id.editTextText2).addTextChangedListener {
-            nuovoTitolo = findViewById<EditText>(R.id.editTextText2).text.toString()
-        }
-        findViewById<EditText>(R.id.editTextText3).addTextChangedListener {
-            nuovaDescrizione = findViewById<EditText>(R.id.editTextText3).text.toString()
-        }
-        findViewById<Button>(R.id.btnSalva).setOnClickListener{
-            val salvaModifica = Intent(this, PaginaApplicazioneBacheca::class.java)
 
+        findViewById<Button>(R.id.btnSalva).setOnClickListener{
+            val currentUser = intent.getStringExtra("currentUser")
+            val salvaModifica = Intent(this, PaginaApplicazioneBacheca::class.java)
+                .putExtra("currentUser", currentUser)
             val editQuery: Query =
                 db.collection("InsubriaSocial_Annunci")
                     .whereEqualTo("descrizione", descrizione)
@@ -61,9 +53,9 @@ class PaginaModificaAnnuncio : AppCompatActivity() {
                         val idDoc = document.id
                         val modifica = db.collection("InsubriaSocial_Annunci").document(idDoc)
                         val campiAggiornati = hashMapOf(
-                            "data" to nuovaData,
-                            "titolo" to nuovoTitolo,
-                            "descrizione" to nuovaDescrizione
+                            "data" to findViewById<EditText>(R.id.editTextText).text.toString(),
+                            "titolo" to findViewById<EditText>(R.id.editTextText2).text.toString(),
+                            "descrizione" to findViewById<EditText>(R.id.editTextText3).text.toString()
                         )
                         modifica.update(campiAggiornati as Map<String, Any>)
                             .addOnSuccessListener {
@@ -81,7 +73,9 @@ class PaginaModificaAnnuncio : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.btnElimina).setOnClickListener {
+            val currentUser = intent.getStringExtra("currentUser")
             val eliminaAnnuncio = Intent(this, PaginaApplicazioneBacheca::class.java)
+                .putExtra("currentUser", currentUser)
             val deleteQuery: Query =
                 db.collection("InsubriaSocial_Annunci")
                     .whereEqualTo("descrizione", descrizione)

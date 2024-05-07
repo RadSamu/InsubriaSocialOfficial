@@ -42,18 +42,22 @@ class PaginaAggiungiBacheca : AppCompatActivity() {
         //val autore = auth.currentUser.toString()
 
             findViewById<Button>(R.id.btnIndietro).setOnClickListener{
+                val currentUser = intent.getStringExtra("currentUser")
                 val tornaIndietro = Intent(this, PaginaApplicazioneBacheca::class.java)
+                    .putExtra("currentUser", currentUser)
                 startActivity(tornaIndietro)
             }
 
         findViewById<Button>(R.id.btnInvia).setOnClickListener{
+            val currentUser = intent.getStringExtra("currentUser")
             val pubblicaAnnuncio = Intent(this, PaginaApplicazioneBacheca::class.java)
+                .putExtra("currentUser", currentUser)
             val dataAnnuncio = findViewById<EditText>(R.id.editTextData)
             val titoloAnnuncio = findViewById<EditText>(R.id.editTextTitolo)
             val descrizioneAnnuncio = findViewById<EditText>(R.id.editTextDescrizione)
 
 
-            val currentUser = intent.getStringExtra("currentUser")
+            //val currentUser = intent.getStringExtra("currentUser")
             val titolo = titoloAnnuncio.text.toString().trim()
             val descrizione = descrizioneAnnuncio.text.toString().trim()
             val data = dataAnnuncio.text.toString().trim()

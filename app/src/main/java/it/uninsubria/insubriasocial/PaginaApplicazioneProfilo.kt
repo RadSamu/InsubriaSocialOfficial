@@ -27,21 +27,25 @@ class PaginaApplicazioneProfilo : AppCompatActivity() {
             item -> when(item.itemId) {
                 R.id.home -> {
                     val intentHome = Intent(this, PaginaApplicazioneHome::class.java)
+                        .putExtra("currentUser", currentUser)
                     startActivity(intentHome)
                     true
                 }
                 R.id.search -> {
                     val intentSearch = Intent(this, PaginaApplicazioneCerca::class.java)
+                        .putExtra("currentUser", currentUser)
                     startActivity(intentSearch)
                     true
                 }
                 R.id.dashboard -> {
                     val intentDashboard = Intent(this, PaginaApplicazioneBacheca::class.java)
+                        .putExtra("currentUser", currentUser)
                     startActivity(intentDashboard)
                     true
                 }
                 R.id.profile -> {
                     val intentProfile = Intent(this, PaginaApplicazioneProfilo::class.java)
+                        .putExtra("currentUser", currentUser)
                     startActivity(intentProfile)
                     true
                 }
