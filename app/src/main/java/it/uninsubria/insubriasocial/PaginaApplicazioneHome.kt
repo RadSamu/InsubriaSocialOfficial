@@ -74,9 +74,11 @@ class PaginaApplicazioneHome : AppCompatActivity() {
                     }
 
                     R.id.search -> {
+                        val corsiDiLaurea = intent.getStringArrayListExtra("corsiDiLaurea")
                         val currentUser = intent.getStringExtra("currentUser")
                         val intentSearch = Intent(this, PaginaApplicazioneCerca::class.java)
                             .putExtra("currentUser", currentUser)
+                            .putExtra("corsiDiLaurea", corsiDiLaurea)
                         startActivity(intentSearch)
                         true
                     }

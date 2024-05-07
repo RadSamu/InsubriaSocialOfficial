@@ -94,8 +94,11 @@ class PaginaAccesso : AppCompatActivity() {
                     }
                 }
 
+                val corsiDiLaurea = intent.getStringArrayListExtra("corsiDiLaurea")
+
                 val accesso = Intent(this, PaginaApplicazioneHome::class.java)
                     .putExtra("currentUser", currentUser)
+                    .putExtra("corsiDiLaurea", corsiDiLaurea)
 
                 // Check login permit
                 if(userTrovato && pswTrovato){

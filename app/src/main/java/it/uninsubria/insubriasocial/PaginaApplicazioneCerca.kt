@@ -4,8 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -28,12 +30,15 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val filtro = intent.getBooleanExtra("filtro", false)
+        val corsoSelezionato = intent.getStringExtra("corsoSelezionato")
         val listView: ListView = findViewById(R.id.simpleListViewCerca)
         var user = ""
         val barraRicerca = findViewById<SearchView>(R.id.SearchView)
         val profili = arrayListOf<String>()
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, profili)
         listView.adapter = adapter
+        //val corsiDiLaurea = intent.getStringExtra("corsiDiLaurea")
         val currentUser = intent.getStringExtra("currentUser")
         val espandiProfilo = Intent(this, PaginaProfiloUtente::class.java)
             .putExtra("currentUser", currentUser)
@@ -53,10 +58,21 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
                 queryCerca.get().addOnCompleteListener{task ->
                     if(task.isSuccessful){
                         for(document in task.result){
-                            val trovato = document.getString("username")
-                            user = user + "$trovato"
-                            profili.add(user)
-                            user = ""
+                            if(filtro == false){
+                                val trovato = document.getString("username")
+                                user = user + "$trovato"
+                                profili.add(user)
+                                user = ""
+                            }else{
+                                if(document.getString("corso di laurea") == corsoSelezionato){
+                                    val trovato = document.getString("username")
+                                    user = user + "$trovato"
+                                    profili.add(user)
+                                    user = ""
+                                }
+                            }
+
+
                         }
                     }
                     adapter.notifyDataSetChanged()
@@ -80,7 +96,14 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
             }
         })
 
-
+        findViewById<Button>(R.id.btnFiltro).setOnClickListener{
+            val corsiDiLaurea = intent.getStringArrayListExtra("corsiDiLaurea")
+            val currentUser = intent.getStringExtra("currentUser")
+            val apriFiltri = Intent(this, PaginaApplicaFiltro::class.java)
+                .putExtra("currentUser", currentUser)
+                .putExtra("corsiDiLaurea", corsiDiLaurea)
+            startActivity(apriFiltri)
+        }
 
         btmNav = findViewById(R.id.navBar)
         btmNav.setOnItemSelectedListener {

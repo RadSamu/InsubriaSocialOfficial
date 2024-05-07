@@ -11,8 +11,9 @@
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -36,7 +37,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="80dp"
         android:drawableLeft="@drawable/ic_information"
         android:drawablePadding="4dp"
@@ -44,6 +45,7 @@
         android:hint="Nome"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -51,35 +53,55 @@
         android:id="@+id/editTextCognome"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/ic_information"
         android:drawablePadding="4dp"
         android:ems="10"
         android:hint="Cognome"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="@+id/editTextNome"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextNome"
         app:layout_constraintTop_toBottomOf="@+id/editTextNome" />
+
+    <Button
+        android:id="@+id/btnRegistrazione"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#0B6600"
+        android:drawableLeft="@drawable/ic_signin"
+        android:includeFontPadding="false"
+        android:paddingStart="30dp"
+        android:text="REGISTRATI"
+        app:cornerRadius="8dp"
+        app:iconPadding="-4dp"
+        app:layout_constraintEnd_toEndOf="@+id/editTextRegConfPsw"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editTextRegConfPsw"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegConfPsw" />
 
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/ic_email"
         android:drawablePadding="4dp"
         android:ems="10"
         android:hint="eMail"
         android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="@+id/editTextCognome"
-        app:layout_constraintStart_toStartOf="@+id/editTextCognome"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCognome" />
+        app:layout_constraintEnd_toEndOf="@+id/spinner2"
+        app:layout_constraintStart_toStartOf="@+id/spinner2"
+        app:layout_constraintTop_toBottomOf="@+id/spinner2" />
 
     <EditText
         android:id="@+id/editTextRegUser"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/ic_user"
         android:drawablePadding="4dp"
         android:ems="10"
@@ -90,49 +112,43 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
     <EditText
-        android:id="@+id/editTextRegPsw"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:drawableLeft="@drawable/ic_security"
-        android:drawablePadding="4dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editTextRegUser"
-        app:layout_constraintStart_toStartOf="@+id/editTextRegUser"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegUser" />
-
-    <EditText
         android:id="@+id/editTextRegConfPsw"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/ic_security"
         android:drawablePadding="4dp"
         android:ems="10"
         android:hint="Conferma Password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/editTextRegPsw"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextRegPsw"
         app:layout_constraintTop_toBottomOf="@+id/editTextRegPsw" />
 
-    <Button
-        android:id="@+id/btnRegistrazione"
+    <EditText
+        android:id="@+id/editTextRegPsw"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="16dp"
-        android:drawableLeft="@drawable/ic_signin"
-        android:includeFontPadding="false"
-        android:paddingStart="30dp"
-        android:text="REGISTRATI"
-        android:backgroundTint="#0B6600"
-        app:cornerRadius="8dp"
-        app:iconPadding="-4dp"
-        app:layout_constraintEnd_toEndOf="@+id/editTextRegConfPsw"
-        app:layout_constraintStart_toStartOf="@+id/editTextRegConfPsw"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegConfPsw" />
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:drawableLeft="@drawable/ic_security"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/editTextRegUser"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editTextRegUser"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegUser" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="199dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/editTextCognome"
+        app:layout_constraintStart_toStartOf="@+id/editTextCognome"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCognome" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
