@@ -34,7 +34,11 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
         val profili = arrayListOf<String>()
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, profili)
         listView.adapter = adapter
-
+        val currentUser = intent.getStringExtra("currentUser")
+        val espandiProfilo = Intent(this, PaginaProfiloUtente::class.java)
+            .putExtra("currentUser", currentUser)
+        val proprioProfilo = Intent(this, PaginaApplicazioneProfilo::class.java)
+            .putExtra("currentUser", currentUser)
 
         barraRicerca.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -62,6 +66,13 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
                     }
                     listView.setOnItemClickListener { parent, view, position, id ->
                         val selectedItem = parent.getItemAtPosition(position).toString()
+                        if(selectedItem == currentUser){
+                            startActivity(proprioProfilo)
+                        }else{
+                            espandiProfilo.putExtra("selectedItem",selectedItem)
+                            startActivity(espandiProfilo)
+                        }
+
                     }
 
                 }
