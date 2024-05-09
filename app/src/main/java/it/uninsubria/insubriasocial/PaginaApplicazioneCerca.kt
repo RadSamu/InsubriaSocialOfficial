@@ -120,6 +120,7 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
 
 
         btmNav = findViewById(R.id.navBar)
+        btmNav.setSelectedItemId(R.id.search)
         btmNav.setOnItemSelectedListener {
             item -> when(item.itemId) {
                 R.id.home -> {

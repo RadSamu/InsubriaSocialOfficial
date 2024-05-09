@@ -79,6 +79,7 @@ class PaginaApplicazioneHome : AppCompatActivity() {
                 .putExtra("currentUser", currentUser)
 
             btmNav = findViewById(R.id.navBar)
+            btmNav.setSelectedItemId(R.id.home)
             btmNav.setOnItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.home -> {

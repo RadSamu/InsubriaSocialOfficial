@@ -10,11 +10,13 @@
         android:id="@+id/buttonClose"
         android:layout_width="45dp"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#0B6600"
         app:cornerRadius="4dp"
 
+        app:icon="@drawable/ic_close"
+        app:iconGravity="textStart"
         app:iconPadding="-2dp"
         app:iconSize="30dp" />
 
@@ -27,7 +29,8 @@
         android:layout_marginRight="20dp"
         android:gravity="end"
         android:text="Modifica password"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
 
     <TextView
         android:id="@+id/textViewUser"
@@ -37,6 +40,36 @@
         android:layout_marginRight="20dp"
         android:gravity="end"
         android:text="Modifica username"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/textViewBiografia"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="end"
+        android:text="Modifica biografia"
+        android:textStyle="bold"
+        android:textColor="@color/black" />
+
+
+    <Button
+        android:id="@+id/btnLogOut"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="228dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:backgroundTint="#0B6600"
+        android:drawableLeft="@drawable/ic_logout"
+        android:includeFontPadding="false"
+        android:paddingStart="38dp"
+        android:paddingEnd="25dp"
+        android:text="LOGOUT"
+        app:cornerRadius="4dp" />
 
 </LinearLayout>
