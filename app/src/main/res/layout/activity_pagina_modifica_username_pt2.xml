@@ -31,7 +31,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="120dp"
         android:layout_marginEnd="32dp"
-        android:drawableLeft="@drawable/ic_security"
+        android:drawableLeft="@drawable/ic_user"
         android:drawablePadding="4dp"
         android:ems="10"
         android:hint="Nuovo Username"
@@ -44,14 +44,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:drawableLeft="@drawable/ic_security"
+        android:drawableLeft="@drawable/ic_user"
         android:drawablePadding="4dp"
         android:ems="10"
         android:hint="Conferma Username"
         app:layout_constraintEnd_toEndOf="@+id/editTextEditUser"
         app:layout_constraintStart_toStartOf="@+id/editTextEditUser"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEditUser">
-    </EditText>
+        app:layout_constraintTop_toBottomOf="@+id/editTextEditUser"></EditText>
 
     <Button
         android:id="@+id/btnEditUser"
@@ -60,10 +59,10 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="24dp"
-        android:drawableLeft="@drawable/ic_recovery"
-        android:paddingStart="50dp"
-        android:text="RECUPERA"
         android:backgroundTint="#0B6600"
+        android:drawableLeft="@drawable/ic_edit"
+        android:paddingStart="50dp"
+        android:text="MODIFICA"
         app:cornerRadius="8dp"
         app:iconPadding="-24dp"
         app:layout_constraintEnd_toEndOf="@+id/editTextConfEditUser"
