@@ -10,11 +10,11 @@
         android:id="@+id/buttonClose"
         android:layout_width="45dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="20dp"
+
         android:layout_marginTop="20dp"
         android:backgroundTint="#0B6600"
         app:cornerRadius="4dp"
-
+        android:layout_marginStart="20dp"
         app:icon="@drawable/ic_close"
         app:iconGravity="textStart"
         app:iconPadding="-2dp"
@@ -27,7 +27,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        android:gravity="end"
+        android:gravity="start"
         android:text="Modifica password"
         android:textStyle="bold"
         android:textColor="@color/black"/>
@@ -38,7 +38,7 @@
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:gravity="end"
+        android:gravity="start"
         android:text="Modifica username"
         android:textStyle="bold"
         android:textColor="@color/black"/>
@@ -49,7 +49,7 @@
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:gravity="end"
+        android:gravity="start"
         android:text="Modifica biografia"
         android:textStyle="bold"
         android:textColor="@color/black" />
@@ -59,7 +59,7 @@
         android:id="@+id/btnLogOut"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="228dp"
+        android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="500dp"
         android:layout_marginEnd="20dp"
