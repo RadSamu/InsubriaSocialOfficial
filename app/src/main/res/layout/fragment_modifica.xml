@@ -1,0 +1,42 @@
+<!-- fragment_modifica.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/buttonClose"
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:backgroundTint="#0B6600"
+        app:cornerRadius="4dp"
+
+        app:iconPadding="-2dp"
+        app:iconSize="30dp" />
+
+    <TextView
+        android:id="@+id/textViewPassword"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="end"
+        android:text="Modifica password"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewUser"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="end"
+        android:text="Modifica username"
+        android:textStyle="bold" />
+
+</LinearLayout>

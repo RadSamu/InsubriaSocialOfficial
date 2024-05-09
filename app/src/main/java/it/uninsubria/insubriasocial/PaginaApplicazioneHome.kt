@@ -2,10 +2,12 @@ package it.uninsubria.insubriasocial
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -16,6 +18,7 @@ import com.google.firebase.firestore.Query
 class PaginaApplicazioneHome : AppCompatActivity() {
     private lateinit var btmNav: BottomNavigationView
     val db = FirebaseFirestore.getInstance()
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,39 +65,37 @@ class PaginaApplicazioneHome : AppCompatActivity() {
                 val selectedItem = parent.getItemAtPosition(position).toString()
             }
 
+            // creazione e setting activities
+            val corsiDiLaurea = intent.getStringArrayListExtra("corsiDiLaurea")
+            val currentUser = intent.getStringExtra("currentUser")
+            val intentSearch = Intent(this, PaginaApplicazioneCerca::class.java)
+                .putExtra("currentUser", currentUser)
+                .putExtra("corsiDiLaurea", corsiDiLaurea)
+
+            val intentDashboard = Intent(this, PaginaApplicazioneBacheca::class.java)
+                .putExtra("currentUser", currentUser)
+
+            val intentProfile = Intent(this, PaginaApplicazioneProfilo::class.java)
+                .putExtra("currentUser", currentUser)
+
             btmNav = findViewById(R.id.navBar)
             btmNav.setOnItemSelectedListener { item ->
                 when (item.itemId) {
                     R.id.home -> {
-                        val currentUser = intent.getStringExtra("currentUser")
-                        val intentHome = Intent(this, PaginaApplicazioneHome::class.java)
-                            .putExtra("currentUser", currentUser)
-                        startActivity(intentHome)
                         true
                     }
 
                     R.id.search -> {
-                        val corsiDiLaurea = intent.getStringArrayListExtra("corsiDiLaurea")
-                        val currentUser = intent.getStringExtra("currentUser")
-                        val intentSearch = Intent(this, PaginaApplicazioneCerca::class.java)
-                            .putExtra("currentUser", currentUser)
-                            .putExtra("corsiDiLaurea", corsiDiLaurea)
                         startActivity(intentSearch)
                         true
                     }
 
                     R.id.dashboard -> {
-                        val currentUser = intent.getStringExtra("currentUser")
-                        val intentDashboard = Intent(this, PaginaApplicazioneBacheca::class.java)
-                            .putExtra("currentUser", currentUser)
                         startActivity(intentDashboard)
                         true
                     }
 
                     R.id.profile -> {
-                        val currentUser = intent.getStringExtra("currentUser")
-                        val intentProfile = Intent(this, PaginaApplicazioneProfilo::class.java)
-                            .putExtra("currentUser", currentUser)
                         startActivity(intentProfile)
                         true
                     }
