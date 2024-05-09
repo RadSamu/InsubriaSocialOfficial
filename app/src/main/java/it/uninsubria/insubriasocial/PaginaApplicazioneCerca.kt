@@ -121,24 +121,24 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
 
         btmNav = findViewById(R.id.navBar)
         btmNav.setOnItemSelectedListener {
-                item -> when(item.itemId) {
-            R.id.home -> {
-                startActivity(intentHome)
-                true
+            item -> when(item.itemId) {
+                R.id.home -> {
+                    startActivity(intentHome)
+                    true
+                }
+                R.id.search -> {
+                    true
+                }
+                R.id.dashboard -> {
+                    startActivity(intentDashboard)
+                    true
+                }
+                R.id.profile -> {
+                    startActivity(intentProfile)
+                    true
+                }
+                else -> false
             }
-            R.id.search -> {
-                true
-            }
-            R.id.dashboard -> {
-                startActivity(intentDashboard)
-                true
-            }
-            R.id.profile -> {
-                startActivity(intentProfile)
-                true
-            }
-            else -> false
-        }
         }
     }
 }

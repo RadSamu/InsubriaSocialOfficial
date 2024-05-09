@@ -35,18 +35,18 @@ class PaginaApplicazioneProfilo : AppCompatActivity() {
 
         var fragmentAperto = false
         findViewById<Button>(R.id.button3).setOnClickListener {
-            if(!fragmentAperto){
-                val fragment = ModificaFragment()
-                val bundle = Bundle()
-                bundle.putString("currentUser", currentUser) // Imposta il valore dell'argomento con una chiave
-                fragment.arguments = bundle
+           if(!fragmentAperto){
+               val fragment = ModificaFragment()
+               val bundle = Bundle()
+               bundle.putString("currentUser", currentUser) // Imposta il valore dell'argomento con una chiave
+               fragment.arguments = bundle
 
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
-                    .addToBackStack(null)
-                    .commit()
-                fragmentAperto = true
-            }
+               supportFragmentManager.beginTransaction()
+                   .replace(R.id.fragment_container, fragment)
+                   .addToBackStack(null)
+                   .commit()
+            fragmentAperto = true
+           }
 
         }
 
@@ -63,24 +63,24 @@ class PaginaApplicazioneProfilo : AppCompatActivity() {
 
         btmNav = findViewById(R.id.navBar)
         btmNav.setOnItemSelectedListener {
-                item -> when(item.itemId) {
-            R.id.home -> {
-                startActivity(intentHome)
-                true
+            item -> when(item.itemId) {
+                R.id.home -> {
+                    startActivity(intentHome)
+                    true
+                }
+                R.id.search -> {
+                    startActivity(intentSearch)
+                    true
+                }
+                R.id.dashboard -> {
+                    startActivity(intentDashboard)
+                    true
+                }
+                R.id.profile -> {
+                    true
+                }
+                else -> false
             }
-            R.id.search -> {
-                startActivity(intentSearch)
-                true
-            }
-            R.id.dashboard -> {
-                startActivity(intentDashboard)
-                true
-            }
-            R.id.profile -> {
-                true
-            }
-            else -> false
-        }
         }
     }
 }

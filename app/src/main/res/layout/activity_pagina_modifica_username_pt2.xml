@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaginaModificaUsernamePt2">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="50dp"
+        android:text="Modifica Username"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextEditUser"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="32dp"
+        android:drawableLeft="@drawable/ic_security"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:hint="Nuovo Username"
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <EditText
+        android:id="@+id/editTextConfEditUser"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/ic_security"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:hint="Conferma Username"
+        app:layout_constraintEnd_toEndOf="@+id/editTextEditUser"
+        app:layout_constraintStart_toStartOf="@+id/editTextEditUser"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEditUser">
+    </EditText>
+
+    <Button
+        android:id="@+id/btnEditUser"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="24dp"
+        android:drawableLeft="@drawable/ic_recovery"
+        android:paddingStart="50dp"
+        android:text="RECUPERA"
+        android:backgroundTint="#0B6600"
+        app:cornerRadius="8dp"
+        app:iconPadding="-24dp"
+        app:layout_constraintEnd_toEndOf="@+id/editTextConfEditUser"
+        app:layout_constraintStart_toStartOf="@+id/editTextConfEditUser"
+        app:layout_constraintTop_toBottomOf="@+id/editTextConfEditUser" />
+</androidx.constraintlayout.widget.ConstraintLayout>
