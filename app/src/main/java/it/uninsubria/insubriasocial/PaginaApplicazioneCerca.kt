@@ -1,6 +1,7 @@
 package it.uninsubria.insubriasocial
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
@@ -9,6 +10,7 @@ import android.widget.ListView
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -21,6 +23,7 @@ import io.grpc.Context
 class PaginaApplicazioneCerca : AppCompatActivity() {
     private lateinit var btmNav: BottomNavigationView
     val db = FirebaseFirestore.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -105,39 +108,37 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
             startActivity(apriFiltri)
         }
 
+        // creazione e setting delle activities
+        val intentHome = Intent(this, PaginaApplicazioneHome::class.java)
+            .putExtra("currentUser", currentUser)
+
+        val intentDashboard = Intent(this, PaginaApplicazioneBacheca::class.java)
+            .putExtra("currentUser", currentUser)
+
+        val intentProfile = Intent(this, PaginaApplicazioneProfilo::class.java)
+            .putExtra("currentUser", currentUser)
+
+
         btmNav = findViewById(R.id.navBar)
         btmNav.setOnItemSelectedListener {
-            item -> when(item.itemId) {
-                R.id.home -> {
-                    val currentUser = intent.getStringExtra("currentUser")
-                    val intentHome = Intent(this, PaginaApplicazioneHome::class.java)
-                        .putExtra("currentUser", currentUser)
-                    startActivity(intentHome)
-                    true
-                }
-                R.id.search -> {
-                    val currentUser = intent.getStringExtra("currentUser")
-                    val intentSearch = Intent(this, PaginaApplicazioneCerca::class.java)
-                        .putExtra("currentUser", currentUser)
-                    startActivity(intentSearch)
-                    true
-                }
-                R.id.dashboard -> {
-                    val currentUser = intent.getStringExtra("currentUser")
-                    val intentDashboard = Intent(this, PaginaApplicazioneBacheca::class.java)
-                        .putExtra("currentUser", currentUser)
-                    startActivity(intentDashboard)
-                    true
-                }
-                R.id.profile -> {
-                    val currentUser = intent.getStringExtra("currentUser")
-                    val intentProfile = Intent(this, PaginaApplicazioneProfilo::class.java)
-                        .putExtra("currentUser", currentUser)
-                    startActivity(intentProfile)
-                    true
-                }
-                else -> false
+                item -> when(item.itemId) {
+            R.id.home -> {
+                startActivity(intentHome)
+                true
             }
+            R.id.search -> {
+                true
+            }
+            R.id.dashboard -> {
+                startActivity(intentDashboard)
+                true
+            }
+            R.id.profile -> {
+                startActivity(intentProfile)
+                true
+            }
+            else -> false
+        }
         }
     }
 }
