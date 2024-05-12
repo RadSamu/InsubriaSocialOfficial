@@ -84,24 +84,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/btm_nav_bar_menu" />
 
-    <EditText
-        android:id="@+id/editTextBiografia"
-        android:layout_width="340dp"
-        android:layout_height="150dp"
-        android:layout_marginBottom="220dp"
-        android:ems="10"
-        android:hint="Biografia"
-        android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/navBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="155dp" />
+
+    <TextView
+        android:id="@+id/textViewBio"
+        android:layout_width="309dp"
+        android:layout_height="136dp"
+        android:layout_marginTop="40dp"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintStart_toStartOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

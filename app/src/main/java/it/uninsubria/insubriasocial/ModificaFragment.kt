@@ -1,6 +1,7 @@
 package it.uninsubria.insubriasocial
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.findViewTreeViewModelStoreOwner
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,8 +54,32 @@ class ModificaFragment : Fragment() {
         }
         // Aggiungi un OnClickListener alla TextView
         closeTextView.setOnClickListener {
+
             // Chiudi il Fragment quando la TextView viene cliccata
             requireActivity().supportFragmentManager.popBackStack()
+        }
+
+        view.findViewById<Button>(R.id.btnLogOut).setOnClickListener {
+            val logOut = Intent(activity, PaginaAccesso::class.java)
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setMessage("Sei sicuro di voler effettuare il logout?")
+                .setCancelable(false)
+                .setPositiveButton("Sì") { dialog, id ->
+                    startActivity(logOut)
+                }
+                .setNegativeButton("No") { dialog, id ->
+                    dialog.dismiss()
+                }
+            val dialog = builder.create()
+            dialog.show()
+
+        }
+
+        val bioTextView = view.findViewById<TextView>(R.id.textViewBiografia)
+        bioTextView.setOnClickListener{
+            val modificaBio = Intent(activity, PaginaModificaBiografia::class.java)
+                .putExtra("currentUser", currentUser)
+            startActivity(modificaBio)
         }
 
         val userTextView = view.findViewById<TextView>(R.id.textViewUser)

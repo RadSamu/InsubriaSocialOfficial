@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.ListView
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
@@ -63,6 +64,13 @@ class PaginaApplicazioneHome : AppCompatActivity() {
 
             listView.setOnItemClickListener { parent, view, position, id ->
                 val selectedItem = parent.getItemAtPosition(position).toString()
+            }
+
+            findViewById<Button>(R.id.btnElencoChat).setOnClickListener {
+                val currentUser = intent.getStringExtra("currentUser")
+                val apriElencoChat = Intent(this, PaginaElencoChat::class.java)
+                    .putExtra("currentUser", currentUser)
+                startActivity(apriElencoChat)
             }
 
             // creazione e setting activities

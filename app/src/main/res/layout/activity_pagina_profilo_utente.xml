@@ -46,17 +46,30 @@
 
     <Button
         android:id="@+id/btnApriChat"
-        android:layout_width="104dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="180dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="304dp"
+        android:layout_marginTop="120dp"
         android:backgroundTint="#0B6600"
-        android:text="CHAT"
         app:cornerRadius="4dp"
+        app:icon="@drawable/baseline_message_24"
         app:iconGravity="textStart"
         app:iconPadding="-2dp"
         app:iconSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewUserBio"
+        android:layout_width="345dp"
+        android:layout_height="175dp"
+        android:layout_marginTop="44dp"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.424"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFotoProfilo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

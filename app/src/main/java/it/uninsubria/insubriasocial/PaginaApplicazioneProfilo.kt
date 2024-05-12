@@ -15,10 +15,13 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.core.View
 
 class PaginaApplicazioneProfilo : AppCompatActivity() {
     private lateinit var btmNav: BottomNavigationView
+    val db = FirebaseFirestore.getInstance()
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,20 +36,34 @@ class PaginaApplicazioneProfilo : AppCompatActivity() {
         val currentUser = intent.getStringExtra("currentUser")
         findViewById<TextView>(R.id.textView10).setText(currentUser)
 
-        var fragmentAperto = false
+        val bioQuery: Query =
+            db.collection("InsubriaSocial_Utenti")
+                .whereEqualTo("username", currentUser)
+        bioQuery.get().addOnCompleteListener { task ->
+            if(task.isSuccessful){
+                for(document in task.result){
+                    val biografia = document.getString("biografia")
+                    findViewById<TextView>(R.id.textViewBio).setText(biografia)
+                }
+
+            }
+        }
+
+
         findViewById<Button>(R.id.button3).setOnClickListener {
-           if(!fragmentAperto){
+
+
                val fragment = ModificaFragment()
                val bundle = Bundle()
                bundle.putString("currentUser", currentUser) // Imposta il valore dell'argomento con una chiave
+            
                fragment.arguments = bundle
 
                supportFragmentManager.beginTransaction()
                    .replace(R.id.fragment_container, fragment)
                    .addToBackStack(null)
                    .commit()
-            fragmentAperto = true
-           }
+
 
         }
 

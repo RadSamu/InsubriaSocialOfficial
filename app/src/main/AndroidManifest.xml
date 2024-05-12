@@ -15,6 +15,15 @@
         android:theme="@style/Theme.InsubriaSocial"
         tools:targetApi="31">
         <activity
+            android:name=".PaginaModificaBiografia"
+            android:exported="false" />
+        <activity
+            android:name=".PaginaElencoChat"
+            android:exported="false" />
+        <activity
+            android:name=".PaginaChat"
+            android:exported="false" />
+        <activity
             android:name=".PaginaModificaUsernamePt2"
             android:exported="false" />
         <activity
