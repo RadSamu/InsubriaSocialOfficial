@@ -38,7 +38,7 @@ class PaginaProfiloUtente : AppCompatActivity() {
 
         findViewById<TextView>(R.id.textViewNomeProfilo).setText(selectedItem)
 
-        findViewById<Button>(R.id.btnIndietro).setOnClickListener{
+        findViewById<Button>(R.id.btnInviaMessaggio).setOnClickListener{
             val currentUser = intent.getStringExtra("currentUser")
             val tornaIndietro = Intent(this, PaginaApplicazioneCerca::class.java)
                 .putExtra("currentUser", currentUser)

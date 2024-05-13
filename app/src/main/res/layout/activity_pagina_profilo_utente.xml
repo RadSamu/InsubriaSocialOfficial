@@ -8,7 +8,7 @@
     tools:context=".PaginaProfiloUtente">
 
     <Button
-        android:id="@+id/btnIndietro"
+        android:id="@+id/btnInviaMessaggio"
         android:layout_width="45dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
@@ -29,7 +29,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIndietro"
+        app:layout_constraintTop_toBottomOf="@+id/btnInviaMessaggio"
         app:srcCompat="@drawable/ic_account" />
 
     <TextView

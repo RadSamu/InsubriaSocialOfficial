@@ -30,7 +30,7 @@ class PaginaApplicaFiltro : AppCompatActivity() {
         corsoDiLaurea.adapter = adapter
 
 
-        findViewById<Button>(R.id.btnIndietro).setOnClickListener{
+        findViewById<Button>(R.id.btnInviaMessaggio).setOnClickListener{
             val tornaIndietro = Intent(this, PaginaApplicazioneCerca::class.java)
                 .putExtra("filtro", filtro)
             startActivity(tornaIndietro)

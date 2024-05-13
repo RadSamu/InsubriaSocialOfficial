@@ -18,11 +18,11 @@
         android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnIndietro"
+        app:layout_constraintStart_toEndOf="@+id/btnInviaMessaggio"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnIndietro"
+        android:id="@+id/btnInviaMessaggio"
         android:layout_width="45dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
