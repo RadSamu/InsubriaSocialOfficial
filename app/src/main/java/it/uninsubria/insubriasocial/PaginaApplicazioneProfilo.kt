@@ -49,22 +49,15 @@ class PaginaApplicazioneProfilo : AppCompatActivity() {
             }
         }
 
-
+        val fragment = ModificaFragment()
+        val bundle = Bundle()
+        bundle.putString("currentUser", currentUser) // Imposta il valore dell'argomento con una chiave
+        fragment.arguments = bundle
         findViewById<Button>(R.id.button3).setOnClickListener {
-
-
-               val fragment = ModificaFragment()
-               val bundle = Bundle()
-               bundle.putString("currentUser", currentUser) // Imposta il valore dell'argomento con una chiave
-            
-               fragment.arguments = bundle
-
                supportFragmentManager.beginTransaction()
                    .replace(R.id.fragment_container, fragment)
                    .addToBackStack(null)
                    .commit()
-
-
         }
 
 
