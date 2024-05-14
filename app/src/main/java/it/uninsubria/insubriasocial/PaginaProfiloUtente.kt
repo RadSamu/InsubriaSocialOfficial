@@ -22,7 +22,6 @@ class PaginaProfiloUtente : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val currentUser = intent.getStringExtra("currentUser")
         val selectedItem = intent.getStringExtra("selectedItem")
         val caricaBio: Query =
             db.collection("InsubriaSocial_Utenti")
@@ -40,12 +39,14 @@ class PaginaProfiloUtente : AppCompatActivity() {
         findViewById<TextView>(R.id.textViewNomeProfilo).setText(selectedItem)
 
         findViewById<Button>(R.id.btnInviaMessaggio).setOnClickListener{
+            val currentUser = intent.getStringExtra("currentUser")
             val tornaIndietro = Intent(this, PaginaApplicazioneCerca::class.java)
                 .putExtra("currentUser", currentUser)
             startActivity(tornaIndietro)
         }
 
         findViewById<Button>(R.id.btnApriChat).setOnClickListener {
+            val currentUser = intent.getStringExtra("currentUser")
             val apriChat = Intent(this, PaginaChat::class.java)
                 .putExtra("currentUser", currentUser)
                 .putExtra("selectedItem", selectedItem)

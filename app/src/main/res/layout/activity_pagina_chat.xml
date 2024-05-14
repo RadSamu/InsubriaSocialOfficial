@@ -12,7 +12,7 @@
         android:layout_width="45dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:backgroundTint="#0B6600"
         app:cornerRadius="4dp"
         app:icon="@drawable/ic_left_arrow"
@@ -76,6 +76,13 @@
         app:layout_constraintHorizontal_bias="0.129"
         app:layout_constraintStart_toEndOf="@+id/imageViewFotoProfilo"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewChat"
+        android:layout_width="409dp"
+        android:layout_height="736dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="87dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
