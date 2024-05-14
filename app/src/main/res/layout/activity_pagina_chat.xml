@@ -23,11 +23,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnIndietro"
+        android:id="@+id/btnInviaMessaggio"
         android:layout_width="45dp"
         android:layout_height="50dp"
-        android:layout_marginStart="348dp"
-        android:layout_marginTop="824dp"
+        android:layout_marginTop="828dp"
         android:backgroundTint="#0B6600"
         android:hint="Scrivi un messaggio..."
         app:cornerRadius="4dp"
@@ -35,6 +34,8 @@
         app:iconGravity="textStart"
         app:iconPadding="-2dp"
         app:iconSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -47,7 +48,7 @@
         android:hint="Scrivi un messaggio..."
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnIndietro"
+        app:layout_constraintEnd_toStartOf="@+id/btnInviaMessaggio"
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent" />
 

@@ -25,6 +25,10 @@ class PaginaChat : AppCompatActivity() {
         val selectedItem = intent.getStringExtra("selectedItem")
         findViewById<TextView>(R.id.textViewNomeUtenteChat).setText(selectedItem)
 
+        findViewById<Button>(R.id.btnInviaMessaggio).setOnClickListener {
+
+        }
+
         findViewById<Button>(R.id.btnIndietro2).setOnClickListener {
             val currentUser = intent.getStringExtra("currentUser")
             val tornaIndietro = Intent(this, PaginaProfiloUtente::class.java)

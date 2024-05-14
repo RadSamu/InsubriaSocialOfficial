@@ -101,7 +101,6 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
 
         findViewById<Button>(R.id.btnFiltro).setOnClickListener{
             val corsiDiLaurea = intent.getStringArrayListExtra("corsiDiLaurea")
-            val currentUser = intent.getStringExtra("currentUser")
             val apriFiltri = Intent(this, PaginaApplicaFiltro::class.java)
                 .putExtra("currentUser", currentUser)
                 .putExtra("corsiDiLaurea", corsiDiLaurea)

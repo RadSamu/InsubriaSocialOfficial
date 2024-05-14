@@ -31,7 +31,7 @@ class PaginaModificaBiografia : AppCompatActivity() {
         val currentUser = intent.getStringExtra("currentUser")
         val tornaIndietro = Intent(this, PaginaApplicazioneProfilo::class.java)
             .putExtra("currentUser", currentUser)
-        findViewById<Button>(R.id.btnIndietro).setOnClickListener {
+        findViewById<Button>(R.id.btnInviaMessaggio).setOnClickListener {
             startActivity(tornaIndietro)
         }
 
