@@ -38,7 +38,7 @@ class PaginaElencoChat : AppCompatActivity() {
         queryLoad.get().addOnCompleteListener { task ->
             if(task.isSuccessful){
                 for(document in task.result){
-                    val utenti = document.get("utenti") as Array<String>
+                    val utenti = document.get("utenti") as List<String>
                     for(string in utenti){
                         if(string == currentUser){
 
@@ -46,6 +46,7 @@ class PaginaElencoChat : AppCompatActivity() {
                             chat.add(string)
                         }
                     }
+
                 }
             }
             adapter.notifyDataSetChanged()
@@ -53,6 +54,10 @@ class PaginaElencoChat : AppCompatActivity() {
 
         listView.setOnItemClickListener { parent, view, position, id ->
             val selectedItem = parent.getItemAtPosition(position).toString()
+            val portaAllaChat = Intent(this, PaginaChat::class.java)
+                .putExtra("currentUser", currentUser)
+                .putExtra("selectedItem", selectedItem)
+            startActivity(portaAllaChat)
         }
 
         findViewById<Button>(R.id.btnIndietroAllaHome).setOnClickListener {

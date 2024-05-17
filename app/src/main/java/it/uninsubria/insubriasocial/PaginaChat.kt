@@ -51,7 +51,7 @@ class PaginaChat : AppCompatActivity() {
                     val docId = document.id
                     val docRef = db.collection("InsubriaSocial_Chat").document(docId).collection("InsubriaSocial_Messaggi")
                     val subQuery: Query =
-                        docRef.orderBy("timestamp", Query.Direction.ASCENDING)
+                        docRef.orderBy("timestamp", Query.Direction.DESCENDING)
                     subQuery.get().addOnCompleteListener {task ->
                         if(task.isSuccessful){
                             for(document in task.result){
@@ -81,30 +81,29 @@ class PaginaChat : AppCompatActivity() {
                     db.collection("InsubriaSocial_Chat")
                 queryRefresh.get().addOnCompleteListener { task ->
                     if (task.isSuccessful) {
+                            for (document in task.result) {
+                                val docId = document.id
+                                val docRef = db.collection("InsubriaSocial_Chat").document(docId).collection("InsubriaSocial_Messaggi")
+                                val subQuery: Query =
+                                    docRef
+                                subQuery.get().addOnCompleteListener {task ->
+                                    if(task.isSuccessful){
 
-                        for (document in task.result) {
-                            val docId = document.id
-                            val docRef = db.collection("InsubriaSocial_Chat").document(docId).collection("InsubriaSocial_Messaggi")
-                            val subQuery: Query =
-                                docRef
-                            subQuery.get().addOnCompleteListener {task ->
-                                if(task.isSuccessful){
+                                        val update = hashMapOf<String, Any>(
+                                            "receiver" to findViewById<TextView>(R.id.textViewNomeUtenteChat).text.toString(),
+                                            "sender" to currentUser.toString(),
+                                            "testo" to stringa,
+                                            "timestamp" to timestamp
+                                        )
+                                        stringa = stringa + "\n -$currentUser"
+                                        docRef.add(update)
+                                        messaggi.add(stringa)
 
-                                    val update = hashMapOf<String, Any>(
-                                        "receiver" to findViewById<TextView>(R.id.textViewNomeUtenteChat).text.toString(),
-                                        "sender" to currentUser.toString(),
-                                        "testo" to stringa,
-                                        "timestamp" to timestamp
-                                    )
-                                    stringa = stringa + "\n -$currentUser"
-                                    docRef.add(update)
-                                    messaggi.add(stringa)
-
+                                    }
+                                    findViewById<EditText>(R.id.editTextScriviMessaggio).text.clear()
+                                    adapter.notifyDataSetChanged()
                                 }
-                                findViewById<EditText>(R.id.editTextScriviMessaggio).text.clear()
-                                adapter.notifyDataSetChanged()
                             }
-                        }
                     }
                 }
             }
