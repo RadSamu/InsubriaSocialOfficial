@@ -27,7 +27,7 @@
         app:menu="@menu/btm_nav_bar_menu" />
 
     <ListView
-        android:id="@+id/simpleListView"
+        android:id="@+id/listViewChat"
         android:layout_width="409dp"
         android:layout_height="558dp"
         app:layout_constraintBottom_toTopOf="@+id/navBar"

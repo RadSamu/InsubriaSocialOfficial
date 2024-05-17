@@ -2,26 +2,27 @@ package it.uninsubria.insubriasocial
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import android.os.Message
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import org.w3c.dom.Text
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class PaginaChat : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
-        val db = FirebaseFirestore.getInstance()
-        val currentUser = intent.getStringExtra("currentUser")
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_pagina_chat)
@@ -30,57 +31,88 @@ class PaginaChat : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewChat)
-        val messaggiList : MutableList<Message> = mutableListOf()
-        val adapter = ChatAdapter(messaggiList)
-        recyclerView.adapter = adapter
-        val query : Query =
-            db.collection("InsubriaSocial_Chat")
-                .whereEqualTo("username", currentUser)
-        query.get().addOnCompleteListener { task ->
+        val db = FirebaseFirestore.getInstance()
+
+        val currentUser = intent.getStringExtra("currentUser").toString()
+        val utente2 = intent.getStringExtra("selectedItem")
+        findViewById<TextView>(R.id.textViewNomeUtenteChat).text = utente2
+
+        val listView = findViewById<ListView>(R.id.listViewChat)
+        val messaggi = arrayListOf<String>()
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, messaggi)
+        listView.adapter = adapter
+
+        val queryRefresh: Query =
+           db.collection("InsubriaSocial_Chat")
+               .whereArrayContains("utenti", currentUser)
+        queryRefresh.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 for (document in task.result) {
-                    val messaggio = document.getString("msg")
-                    val msg = Message.obtain()
-                    msg.obj = messaggio
-                    messaggiList.add(msg)
+                    val docId = document.id
+                    val docRef = db.collection("InsubriaSocial_Chat").document(docId).collection("InsubriaSocial_Messaggi")
+                    val subQuery: Query =
+                        docRef.orderBy("timestamp", Query.Direction.ASCENDING)
+                    subQuery.get().addOnCompleteListener {task ->
+                        if(task.isSuccessful){
+                            for(document in task.result){
+                                val sender = document.getString("sender")
+                                val testo = document.getString("testo")
+                                var text = ""
+                                text = text + "$testo"
+                                text = text + "\n -$sender"
+                                messaggi.add(text)
+                                text = ""
+                            }
+                        }
+                        adapter.notifyDataSetChanged()
+                    }
                 }
             }
-            adapter.notifyDataSetChanged()
-        }
-        val selectedItem = intent.getStringExtra("selectedItem")
-        findViewById<TextView>(R.id.textViewNomeUtenteChat).setText(selectedItem)
+            listView.setOnItemClickListener { parent, view, position, id ->
+                val selectedItem = parent.getItemAtPosition(position).toString()
+            }
 
-        findViewById<Button>(R.id.btnInviaMessaggio).setOnClickListener {
-            val reciver = findViewById<TextView>(R.id.textViewNomeUtenteChat).text.toString()
-            val testo = findViewById<EditText>(R.id.editTextScriviMessaggio).text.toString().trim()
-            val queryAggiungi : Query =
-                db.collection("InsubriaSocial_Chat")
-                    .whereEqualTo("username", currentUser)
-            query.get().addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    for (document in task.result) {
-                        val docId = document.id
-                        val utente2 = document.getString("reciver")
-                        if (reciver == utente2) {
-                            val tmp = db.collection("InsubriaSocial_Chat").document(docId)
-                            val updates = hashMapOf<String, Any>(
-                                "msg" to testo
-                            )
-                            tmp.update(updates)
+            findViewById<Button>(R.id.btnInviaMessaggio).setOnClickListener{
+                var stringa = findViewById<EditText>(R.id.editTextScriviMessaggio).text.toString()
+                val timestamp = LocalDateTime.now()
+                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+                timestamp.format(formatter)
+                val writeQuery: Query =
+                    db.collection("InsubriaSocial_Chat")
+                queryRefresh.get().addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+
+                        for (document in task.result) {
+                            val docId = document.id
+                            val docRef = db.collection("InsubriaSocial_Chat").document(docId).collection("InsubriaSocial_Messaggi")
+                            val subQuery: Query =
+                                docRef
+                            subQuery.get().addOnCompleteListener {task ->
+                                if(task.isSuccessful){
+
+                                    val update = hashMapOf<String, Any>(
+                                        "receiver" to findViewById<TextView>(R.id.textViewNomeUtenteChat).text.toString(),
+                                        "sender" to currentUser.toString(),
+                                        "testo" to stringa,
+                                        "timestamp" to timestamp
+                                    )
+                                    stringa = stringa + "\n -$currentUser"
+                                    docRef.add(update)
+                                    messaggi.add(stringa)
+
+                                }
+                                findViewById<EditText>(R.id.editTextScriviMessaggio).text.clear()
+                                adapter.notifyDataSetChanged()
+                            }
                         }
                     }
                 }
-                findViewById<EditText>(R.id.editTextScriviMessaggio).setText("")
+            }
+            findViewById<Button>(R.id.btnIndietro2).setOnClickListener {
+                val tornaIndietro = Intent(this, PaginaProfiloUtente::class.java)
+                    .putExtra("currentUser", currentUser)
+                startActivity(tornaIndietro)
             }
         }
-
-        findViewById<Button>(R.id.btnIndietro2).setOnClickListener {
-            val tornaIndietro = Intent(this, PaginaProfiloUtente::class.java)
-                .putExtra("currentUser", currentUser)
-                .putExtra("selectedItem", selectedItem)
-            startActivity(tornaIndietro)
-        }
-
     }
 }

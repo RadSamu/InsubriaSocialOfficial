@@ -5,7 +5,6 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -20,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.core.View
 
 
 class PaginaRegistrazione : AppCompatActivity() {
@@ -117,7 +115,7 @@ class PaginaRegistrazione : AppCompatActivity() {
 }
 
 
-private fun Any.collection(): CollectionReference {
+fun Any.collection(s: String): CollectionReference {
     TODO("Not yet implemented")
 }
 

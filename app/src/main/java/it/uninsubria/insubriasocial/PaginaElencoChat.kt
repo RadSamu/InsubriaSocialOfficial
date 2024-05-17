@@ -3,12 +3,15 @@ package it.uninsubria.insubriasocial
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 
 class PaginaElencoChat : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
@@ -20,6 +23,36 @@ class PaginaElencoChat : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        val db = FirebaseFirestore.getInstance()
+        val currentUser = intent.getStringExtra("currentUser").toString()
+        val listView = findViewById<ListView>(R.id.listViewChat)
+        val chat = arrayListOf<String>()
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, chat)
+        listView.adapter = adapter
+
+        val queryLoad: Query =
+            db.collection("InsubriaSocial_Chat")
+                .whereArrayContains("utenti", currentUser)
+        queryLoad.get().addOnCompleteListener { task ->
+            if(task.isSuccessful){
+                for(document in task.result){
+                    val utenti = document.get("utenti") as Array<String>
+                    for(string in utenti){
+                        if(string == currentUser){
+
+                        }else{
+                            chat.add(string)
+                        }
+                    }
+                }
+            }
+            adapter.notifyDataSetChanged()
+        }
+
+        listView.setOnItemClickListener { parent, view, position, id ->
+            val selectedItem = parent.getItemAtPosition(position).toString()
         }
 
         findViewById<Button>(R.id.btnIndietroAllaHome).setOnClickListener {

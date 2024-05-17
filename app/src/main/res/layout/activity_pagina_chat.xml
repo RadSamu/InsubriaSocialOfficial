@@ -24,9 +24,10 @@
 
     <Button
         android:id="@+id/btnInviaMessaggio"
-        android:layout_width="45dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="828dp"
+        android:layout_width="53dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="#0B6600"
         android:hint="Scrivi un messaggio..."
         app:cornerRadius="4dp"
@@ -34,22 +35,22 @@
         app:iconGravity="textStart"
         app:iconPadding="-2dp"
         app:iconSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.956"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toEndOf="@+id/editTextScriviMessaggio" />
 
     <EditText
         android:id="@+id/editTextScriviMessaggio"
-        android:layout_width="314dp"
-        android:layout_height="46dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="317dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="Scrivi un messaggio..."
         android:inputType="text"
+        android:windowSoftInputMode="adjustResize"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnInviaMessaggio"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -77,12 +78,14 @@
         app:layout_constraintStart_toEndOf="@+id/imageViewFotoProfilo"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewChat"
+    <ListView
+        android:id="@+id/listViewChat"
         android:layout_width="409dp"
-        android:layout_height="736dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="87dp" />
+        android:layout_height="558dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextScriviMessaggio"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFotoProfilo"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="1dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

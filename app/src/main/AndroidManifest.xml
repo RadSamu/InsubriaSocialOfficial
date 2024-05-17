@@ -22,7 +22,8 @@
             android:exported="false" />
         <activity
             android:name=".PaginaChat"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".PaginaModificaUsernamePt2"
             android:exported="false" />
@@ -48,13 +49,7 @@
             android:name=".PaginaApplicazioneBacheca"
             android:exported="false" />
         <activity
-            android:name=".PaginaApplicazioneMappa"
-            android:exported="false" />
-        <activity
             android:name=".PaginaApplicazioneCerca"
-            android:exported="false" />
-        <activity
-            android:name=".ProvaPagina"
             android:exported="false" />
         <activity
             android:name=".PaginaApplicazioneHome"
