@@ -22,6 +22,7 @@ class PaginaAggiungiBacheca : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance()
     val collectionName = "InsubriaSocial_Annunci"
 
+
     @SuppressLint("SuspiciousIndentation")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
