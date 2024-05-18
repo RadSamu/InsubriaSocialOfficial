@@ -8,7 +8,7 @@
     tools:context=".PaginaChat">
 
     <Button
-        android:id="@+id/btnIndietro2"
+        android:id="@+id/btnIndietro3"
         android:layout_width="45dp"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"

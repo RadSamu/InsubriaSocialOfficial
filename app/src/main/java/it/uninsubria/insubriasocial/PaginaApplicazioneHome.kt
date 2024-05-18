@@ -29,6 +29,7 @@ class PaginaApplicazioneHome : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val currentUser = intent.getStringExtra("currentUser")
         var annuncio = ""
         val listView: ListView = findViewById(R.id.listViewChat)
         val annunci = arrayListOf<String>()
@@ -48,10 +49,10 @@ class PaginaApplicazioneHome : AppCompatActivity() {
                     val autore  = document.getString("autore")
                     annuncio = annuncio + "\n$data"
                     annuncio = annuncio + "\n"
-                    annuncio = annuncio + "\n$titolo:"
-                    annuncio = annuncio + "\n$descrizione"
-                    annuncio = annuncio + "\n"
-                    annuncio = annuncio + "\n-$autore"
+                    annuncio = annuncio + "\n$titolo"
+                    //annuncio = annuncio + "\n$descrizione"
+                    //annuncio = annuncio + "\n"
+                    //annuncio = annuncio + "\n-$autore"
                     annunci.add(annuncio)
                     annuncio = ""
                 }
@@ -62,6 +63,11 @@ class PaginaApplicazioneHome : AppCompatActivity() {
 
             listView.setOnItemClickListener { parent, view, position, id ->
                 val selectedItem = parent.getItemAtPosition(position).toString()
+                val visualizza = Intent(this, PaginaMostraAnnuncio::class.java)
+                    .putExtra("selectedItem", selectedItem)
+                    .putExtra("currentUser", currentUser)
+                startActivity(visualizza)
+
             }
 
             findViewById<Button>(R.id.btnElencoChat).setOnClickListener {

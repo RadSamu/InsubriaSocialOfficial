@@ -15,6 +15,9 @@
         android:theme="@style/Theme.InsubriaSocial"
         tools:targetApi="31">
         <activity
+            android:name=".PaginaMostraAnnuncio"
+            android:exported="false" />
+        <activity
             android:name=".PaginaModificaBiografia"
             android:exported="false" />
         <activity

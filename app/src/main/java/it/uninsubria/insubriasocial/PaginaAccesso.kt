@@ -2,18 +2,21 @@ package it.uninsubria.insubriasocial
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import java.time.LocalDateTime
 
 class PaginaAccesso : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance()
@@ -25,6 +28,7 @@ class PaginaAccesso : AppCompatActivity() {
     private lateinit var logPassword: EditText
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,6 +103,8 @@ class PaginaAccesso : AppCompatActivity() {
                 val accesso = Intent(this, PaginaApplicazioneHome::class.java)
                     .putExtra("currentUser", currentUser)
                     .putExtra("corsiDiLaurea", corsiDiLaurea)
+
+
 
                 // Check login permit
                 if(userTrovato && pswTrovato){
