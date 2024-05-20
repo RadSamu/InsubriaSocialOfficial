@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -30,6 +29,7 @@ class PaginaMostraAnnuncio : AppCompatActivity() {
         val sottostringa = selectedItem!!.split("\n")
         val titolo = sottostringa[3].toString()
         var annuncio = ""
+        var luogo = ""
         //query
         val loadQuery: Query =
             db.collection("InsubriaSocial_Annunci")
@@ -41,6 +41,7 @@ class PaginaMostraAnnuncio : AppCompatActivity() {
                     val data = document.getString("data")
                     val titolo = document.getString("titolo")
                     val descrizione = document.getString("descrizione")
+                    val posizione = document.getString("posizione")
                     annuncio = annuncio + "$data"
                     annuncio = annuncio + "\n"
                     annuncio = annuncio + "\n$titolo"
@@ -49,11 +50,18 @@ class PaginaMostraAnnuncio : AppCompatActivity() {
                     annuncio = annuncio + "\n"
                     annuncio = annuncio + "\n-$autore"
                     findViewById<TextView>(R.id.textViewMostraAnnuncio).setText(annuncio)
+                    luogo = luogo + "$posizione"
                 }
             }
         }
 
-
+        findViewById<Button>(R.id.btnApriMappa).setOnClickListener {
+            val apriMappa = Intent(this, PaginaMostraMappa::class.java)
+                .putExtra("currentUser", currentUser)
+                .putExtra("posizione", luogo)
+                .putExtra("annuncio", annuncio)
+            startActivity(apriMappa)
+        }
         findViewById<Button>(R.id.btnIndietro3).setOnClickListener {
             val intent = Intent(this, PaginaApplicazioneHome::class.java)
                 .putExtra("currentUser", currentUser)

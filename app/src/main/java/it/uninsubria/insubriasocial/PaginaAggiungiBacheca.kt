@@ -6,8 +6,10 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
@@ -43,6 +45,12 @@ class PaginaAggiungiBacheca : AppCompatActivity() {
                 startActivity(tornaIndietro)
             }
 
+        val posizione = findViewById<Spinner>(R.id.spinner3)
+        val posizioni = arrayListOf("Pad. Seppilli", "Pad. Morselli", "Pad. Antonini", "Pad. Monte Generoso", "Mensa Monte Generoso")
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, posizioni)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        posizione.adapter = adapter
+
         findViewById<Button>(R.id.btnInvia).setOnClickListener{
             val currentUser = intent.getStringExtra("currentUser")
             val pubblicaAnnuncio = Intent(this, PaginaApplicazioneBacheca::class.java)
@@ -56,13 +64,15 @@ class PaginaAggiungiBacheca : AppCompatActivity() {
             val titolo = titoloAnnuncio.text.toString().trim()
             val descrizione = descrizioneAnnuncio.text.toString().trim()
             val data = dataAnnuncio.text.toString().trim()
+            val posizioneSelezionata = posizione.selectedItem.toString()
 
 
             val noticeMap = hashMapOf(
                 "data" to data,
                 "titolo" to titolo,
                 "descrizione" to descrizione,
-                "autore" to currentUser
+                "autore" to currentUser,
+                "posizione" to posizioneSelezionata
             )
 
             if(!data.isEmpty() && !titolo.isEmpty() && !descrizione.isEmpty()){
