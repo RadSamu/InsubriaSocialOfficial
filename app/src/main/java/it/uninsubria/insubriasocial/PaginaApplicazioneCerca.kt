@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.contains
@@ -38,6 +39,7 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
         val listView: ListView = findViewById(R.id.simpleListViewCerca)
         var user = ""
         val barraRicerca = findViewById<SearchView>(R.id.SearchView)
+        barraRicerca.background = ContextCompat.getDrawable(this, R.drawable.search_view_background)
         val profili = arrayListOf<String>()
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, profili)
         listView.adapter = adapter
