@@ -2,22 +2,18 @@ package it.uninsubria.insubriasocial
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.PopupMenu
+import android.widget.ListView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.core.View
 
 class PaginaApplicazioneProfilo : AppCompatActivity() {
     private lateinit var btmNav: BottomNavigationView
@@ -48,6 +44,7 @@ class PaginaApplicazioneProfilo : AppCompatActivity() {
 
             }
         }
+
 
         val fragment = ModificaFragment()
         val bundle = Bundle()

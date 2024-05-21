@@ -19,6 +19,9 @@
         android:theme="@style/Theme.InsubriaSocial"
         tools:targetApi="31">
         <activity
+            android:name=".PaginaAnnunciSalvati"
+            android:exported="false" />
+        <activity
             android:name=".PaginaMostraMappa"
             android:exported="false" />
         <activity

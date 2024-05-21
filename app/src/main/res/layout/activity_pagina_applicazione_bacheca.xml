@@ -60,8 +60,8 @@
 
     <ListView
         android:id="@+id/simpleListViewCerca"
-        android:layout_width="413dp"
-        android:layout_height="388dp"
+        android:layout_width="match_parent"
+        android:layout_height="534dp"
         app:layout_constraintBottom_toTopOf="@+id/navBar"
         app:layout_constraintTop_toBottomOf="@+id/btnAdd"
         app:layout_constraintVertical_bias="0.816"
@@ -80,7 +80,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/simpleListViewCerca"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAdd" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAdd"
+        app:layout_constraintVertical_bias="0.536" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

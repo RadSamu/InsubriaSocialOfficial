@@ -4,13 +4,12 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
+import androidx.fragment.app.Fragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -75,6 +74,12 @@ class ModificaFragment : Fragment() {
 
         }
 
+        val annunciTextView = view.findViewById<TextView>(R.id.textViewAnnunciSalvati)
+        annunciTextView.setOnClickListener {
+            val intent = Intent(activity, PaginaAnnunciSalvati::class.java)
+                .putExtra("currentUser", currentUser)
+            startActivity(intent)
+        }
         val bioTextView = view.findViewById<TextView>(R.id.textViewBiografia)
         bioTextView.setOnClickListener{
             val modificaBio = Intent(activity, PaginaModificaBiografia::class.java)

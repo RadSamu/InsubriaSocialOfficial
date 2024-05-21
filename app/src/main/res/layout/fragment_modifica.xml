@@ -55,6 +55,17 @@
         android:textColor="@color/black" />
 
 
+    <TextView
+        android:id="@+id/textViewAnnunciSalvati"
+        android:layout_width="360dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="start"
+        android:text="Annunci salvati"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
     <Button
         android:id="@+id/btnLogOut"
         android:layout_width="150dp"

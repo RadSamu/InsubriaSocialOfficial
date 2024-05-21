@@ -1,14 +1,18 @@
 package it.uninsubria.insubriasocial
 
 import android.annotation.SuppressLint
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
@@ -51,6 +55,56 @@ class PaginaMostraAnnuncio : AppCompatActivity() {
                     annuncio = annuncio + "\n-$autore"
                     findViewById<TextView>(R.id.textViewMostraAnnuncio).setText(annuncio)
                     luogo = luogo + "$posizione"
+                }
+            }
+        }
+
+        findViewById<Button>(R.id.btnAggiuntiPreferiti).setOnClickListener {
+            val addQuery: Query =
+                db.collection("InsubriaSocial_Annunci")
+                    .whereEqualTo("titolo", titolo)
+            addQuery.get().addOnCompleteListener{task ->
+                if(task.isSuccessful){
+                    for(document in task.result){
+                        val docId = document.id
+                        val soggetto = db.collection("InsubriaSocial_Annunci").document(docId)
+                        val updates = hashMapOf<String, Any>(
+                            "salvato_da" to arrayListOf(currentUser)
+                        )
+                        soggetto.update(updates)
+                            .addOnSuccessListener { Log.d(ContentValues.TAG, "Campo aggiunto con successo") }
+                            .addOnFailureListener { e -> Log.w(ContentValues.TAG, "Errore durante l'aggiunta del campo", e) }
+                        Toast.makeText(
+                            this,
+                            "Annuncio aggiunto ai preferiti!",
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                    }
+                }
+            }
+        }
+
+        findViewById<Button>(R.id.btnTogliPreferiti).setOnClickListener {
+            val removeQuery: Query =
+                db.collection("InsubriaSocial_Annunci")
+                    .whereEqualTo("titolo", titolo)
+            removeQuery.get().addOnCompleteListener{task ->
+                if(task.isSuccessful){
+                    for(document in task.result){
+                        val documentId = document.id
+                        val soggetto = db.collection("InsubriaSocial_Annunci").document(documentId)
+                        val updates = hashMapOf<String, Any>(
+                            "salvato_da" to FieldValue.arrayRemove(currentUser)
+                        )
+                        soggetto.update(updates)
+                            .addOnSuccessListener { Log.d(ContentValues.TAG, "Campo eliminato con successo") }
+                            .addOnFailureListener { e -> Log.w(ContentValues.TAG, "Errore durante l'eliminazione del campo", e) }
+                        Toast.makeText(
+                            this,
+                            "Annuncio rimosso dai preferiti!",
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                    }
                 }
             }
         }

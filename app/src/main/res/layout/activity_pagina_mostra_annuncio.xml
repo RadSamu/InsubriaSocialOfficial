@@ -26,7 +26,7 @@
     <TextView
         android:id="@+id/textViewMostraAnnuncio"
         android:layout_width="367dp"
-        android:layout_height="466dp"
+        android:layout_height="465dp"
         android:text="TextView"
         android:textColor="#000000"
         android:textSize="25dp"
@@ -39,11 +39,10 @@
 
     <Button
         android:id="@+id/btnApriMappa"
-        android:layout_width="311dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
+        android:layout_width="367dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
         android:backgroundTint="#0B6600"
         android:includeFontPadding="true"
         android:paddingLeft="50dp"
@@ -52,8 +51,37 @@
         app:icon="@drawable/ic_map"
         app:iconPadding="-20dp"
         app:iconSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewMostraAnnuncio"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewMostraAnnuncio"
+        app:layout_constraintTop_toBottomOf="@+id/btnTogliPreferiti" />
+
+    <Button
+        android:id="@+id/btnTogliPreferiti"
+        android:layout_width="181dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#F44336"
+        android:text="RIMUOVI DAI PREFERITI"
+        android:textSize="12sp"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/baseline_bookmark_remove_24"
+        app:iconSize="22dp"
+        app:layout_constraintStart_toStartOf="@+id/textViewMostraAnnuncio"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMostraAnnuncio" />
+
+    <Button
+        android:id="@+id/btnAggiuntiPreferiti"
+        android:layout_width="181dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="#0B6600"
+        android:text="AGGIUNGI AI PREFERITI"
+        android:textSize="12sp"
+        app:cornerRadius="4dp"
+        app:icon="@drawable/baseline_bookmark_24"
+        app:iconSize="22dp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewMostraAnnuncio"
         app:layout_constraintTop_toBottomOf="@+id/textViewMostraAnnuncio" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
