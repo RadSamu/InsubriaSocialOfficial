@@ -35,6 +35,7 @@ class PaginaModificaBiografia : AppCompatActivity() {
             startActivity(tornaIndietro)
         }
 
+
         findViewById<Button>(R.id.btnSalvaBio).setOnClickListener{
             val biografia = findViewById<EditText>(R.id.editTextModificaBio).text.toString()
             val queryBio: Query =

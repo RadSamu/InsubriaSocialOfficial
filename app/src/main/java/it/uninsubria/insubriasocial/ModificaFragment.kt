@@ -42,7 +42,7 @@ class ModificaFragment : Fragment() {
         val currentUser = arguments?.getString("currentUser")
         val view = inflater.inflate(R.layout.fragment_modifica, container, false)
 
-        // Ottieni il riferimento alla TextView
+        // intent per modificare informazioni utente
         val closeTextView = view.findViewById<Button>(R.id.buttonClose)
         val passwordTextView = view.findViewById<TextView>(R.id.textViewPassword)
         passwordTextView.setOnClickListener{
@@ -51,10 +51,8 @@ class ModificaFragment : Fragment() {
             startActivity(intent)
 
         }
-        // Aggiungi un OnClickListener alla TextView
+        // chiusura del fragment
         closeTextView.setOnClickListener {
-
-            // Chiudi il Fragment quando la TextView viene cliccata
             requireActivity().supportFragmentManager.popBackStack()
         }
 
@@ -73,20 +71,21 @@ class ModificaFragment : Fragment() {
             dialog.show()
 
         }
-
+// intent per visualizzare annunci aggiunti ai preferiti
         val annunciTextView = view.findViewById<TextView>(R.id.textViewAnnunciSalvati)
         annunciTextView.setOnClickListener {
             val intent = Intent(activity, PaginaAnnunciSalvati::class.java)
                 .putExtra("currentUser", currentUser)
             startActivity(intent)
         }
+        // modifica biografia
         val bioTextView = view.findViewById<TextView>(R.id.textViewBiografia)
         bioTextView.setOnClickListener{
             val modificaBio = Intent(activity, PaginaModificaBiografia::class.java)
                 .putExtra("currentUser", currentUser)
             startActivity(modificaBio)
         }
-
+// modifica username
         val userTextView = view.findViewById<TextView>(R.id.textViewUser)
         userTextView.setOnClickListener {
             val intent = Intent(activity, PaginaModificaUsername::class.java)

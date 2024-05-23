@@ -31,7 +31,7 @@ class PaginaElencoChat : AppCompatActivity() {
         val chat = arrayListOf<String>()
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, chat)
         listView.adapter = adapter
-
+// query per ottenere tutti gli utenti con cui il currentUser ha mai avviato una chat
         val queryLoad: Query =
             db.collection("InsubriaSocial_Chat")
                 .whereArrayContains("utenti", currentUser)
@@ -41,7 +41,7 @@ class PaginaElencoChat : AppCompatActivity() {
                     val utenti = document.get("utenti") as List<String>
                     for(string in utenti){
                         if(string == currentUser){
-
+                            // vuoto perchè ci interessi che sia l'altro elemento
                         }else{
                             chat.add(string)
                         }

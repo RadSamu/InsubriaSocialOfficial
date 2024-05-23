@@ -105,7 +105,7 @@ class PaginaMostraMappa : AppCompatActivity(), MapListener, GpsStatus.Listener {
 
 
     }
-
+// metodi ulteriori
     override fun onScroll(event: ScrollEvent?): Boolean {
         // event?.source?.getMapCenter()
         Log.e("TAG", "onCreate:la ${event?.source?.getMapCenter()?.latitude}")

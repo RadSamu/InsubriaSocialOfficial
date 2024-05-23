@@ -10,12 +10,9 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import java.time.LocalDateTime
-import java.util.Date
 
 class PaginaProfiloUtente : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance()
@@ -51,7 +48,8 @@ class PaginaProfiloUtente : AppCompatActivity() {
                 .putExtra("currentUser", currentUser)
             startActivity(tornaIndietro)
         }
-
+// crea una chat con l'utente in questione se gia non esiste, altrimenti la apre
+// controllo possibile grazie alla listOf di listOf's (riga 61-64)
         findViewById<Button>(R.id.btnApriChat).setOnClickListener {
             val currentUser = intent.getStringExtra("currentUser")
             val apriChat = Intent(this, PaginaChat::class.java)
@@ -60,7 +58,10 @@ class PaginaProfiloUtente : AppCompatActivity() {
 
             val chatRef = db.collection("InsubriaSocial_Chat")
             val query: Query =
-                chatRef.whereIn("utenti", listOf(currentUser, selectedItem))
+                chatRef.whereIn("utenti", listOf(
+                    listOf(currentUser, selectedItem),
+                    listOf(selectedItem, currentUser)
+                ))
             query.get().addOnCompleteListener { task ->
                 if (task.isSuccessful && task.result.isEmpty) {
                     val newChatRef = chatRef.add(hashMapOf(

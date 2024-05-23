@@ -2,13 +2,11 @@ package it.uninsubria.insubriasocial
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
 import androidx.activity.enableEdgeToEdge
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -46,7 +44,7 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
             val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, annunci)
             listView.adapter = adapter
 
-            // query
+            // query per ritornare annunci personali
             val queryRefresh: Query =
                 db.collection("InsubriaSocial_Annunci")
                     .orderBy("data", Query.Direction.DESCENDING)

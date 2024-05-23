@@ -13,16 +13,12 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import java.time.LocalDateTime
+
 
 class PaginaAccesso : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance()
-    val Utenti = db.collection("InsubriaSocial_Utenti")
-    //val collectionName = "InsubriaSocial_Utenti"
-    lateinit var auth: FirebaseAuth
 
     private lateinit var logUsername: EditText
     private lateinit var logPassword: EditText
@@ -84,7 +80,7 @@ class PaginaAccesso : AppCompatActivity() {
             }
 
 
-                // Check psw
+    // query per verificare la password
             val myQuery2: Query =
                 db.collection("InsubriaSocial_Utenti")
                     .whereEqualTo("password", password)
@@ -105,8 +101,7 @@ class PaginaAccesso : AppCompatActivity() {
                     .putExtra("corsiDiLaurea", corsiDiLaurea)
 
 
-
-                // Check login permit
+        // controllo dei permessi per accedere all'applicazione
                 if(userTrovato && pswTrovato){
                     Toast.makeText(
                         this,
@@ -125,11 +120,7 @@ class PaginaAccesso : AppCompatActivity() {
 
             }
 
-
-
     }
-
-
 
 }
 

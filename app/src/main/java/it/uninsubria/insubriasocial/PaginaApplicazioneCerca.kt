@@ -1,25 +1,19 @@
 package it.uninsubria.insubriasocial
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
 import android.widget.SearchView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.contains
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import io.grpc.Context
 
 class PaginaApplicazioneCerca : AppCompatActivity() {
     private lateinit var btmNav: BottomNavigationView
@@ -34,16 +28,17 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        // dichiarazione variabili iniziali
         val filtro = intent.getBooleanExtra("filtro", false)
         val corsoSelezionato = intent.getStringExtra("corsoSelezionato")
         val listView: ListView = findViewById(R.id.simpleListViewCerca)
         var user = ""
+        // setting della searchView, della ListView e del relativo Adapter
         val barraRicerca = findViewById<SearchView>(R.id.SearchView)
         barraRicerca.background = ContextCompat.getDrawable(this, R.drawable.search_view_background)
         val profili = arrayListOf<String>()
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, profili)
         listView.adapter = adapter
-        //val corsiDiLaurea = intent.getStringExtra("corsiDiLaurea")
         val currentUser = intent.getStringExtra("currentUser")
         val espandiProfilo = Intent(this, PaginaProfiloUtente::class.java)
             .putExtra("currentUser", currentUser)
@@ -55,7 +50,7 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
                 adapter.notifyDataSetChanged()
                 return true
             }
-
+// query per aggiornare i risultati quando il testo della SearchView cambia
             override fun onQueryTextChange(newText: String?): Boolean {
                 val queryCerca: Query =
                     db.collection("InsubriaSocial_Utenti")
@@ -119,7 +114,7 @@ class PaginaApplicazioneCerca : AppCompatActivity() {
         val intentProfile = Intent(this, PaginaApplicazioneProfilo::class.java)
             .putExtra("currentUser", currentUser)
 
-
+        // navBar
         btmNav = findViewById(R.id.navBar)
         btmNav.setSelectedItemId(R.id.search)
         btmNav.setOnItemSelectedListener {

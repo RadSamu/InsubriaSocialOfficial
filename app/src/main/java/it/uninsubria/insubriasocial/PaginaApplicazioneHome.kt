@@ -29,6 +29,8 @@ class PaginaApplicazioneHome : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // setting della ListView e del suo adapter
         val currentUser = intent.getStringExtra("currentUser")
         var annuncio = ""
         val listView: ListView = findViewById(R.id.listViewChat)
@@ -36,7 +38,7 @@ class PaginaApplicazioneHome : AppCompatActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, annunci)
         listView.adapter = adapter
 
-        // query
+        // query di ricerca
         val queryRefresh: Query =
             db.collection("InsubriaSocial_Annunci")
                 .orderBy("data", Query.Direction.DESCENDING)
@@ -45,22 +47,17 @@ class PaginaApplicazioneHome : AppCompatActivity() {
                 for (document in task.result) {
                     val data = document.getString("data")
                     val titolo = document.getString("titolo")
-                    val descrizione = document.getString("descrizione")
-                    val autore  = document.getString("autore")
                     annuncio = annuncio + "\n$data"
                     annuncio = annuncio + "\n"
                     annuncio = annuncio + "\n$titolo"
-                    //annuncio = annuncio + "\n$descrizione"
-                    //annuncio = annuncio + "\n"
-                    //annuncio = annuncio + "\n-$autore"
                     annunci.add(annuncio)
                     annuncio = ""
                 }
 
             }
-
+            // aggiornamento dell'adapter
             adapter.notifyDataSetChanged()
-
+            // possibilità di cliccare l'elemento selezionato
             listView.setOnItemClickListener { parent, view, position, id ->
                 val selectedItem = parent.getItemAtPosition(position).toString()
                 val visualizza = Intent(this, PaginaMostraAnnuncio::class.java)
@@ -71,7 +68,7 @@ class PaginaApplicazioneHome : AppCompatActivity() {
             }
 
             findViewById<Button>(R.id.btnElencoChat).setOnClickListener {
-                val currentUser = intent.getStringExtra("currentUser")
+
                 val apriElencoChat = Intent(this, PaginaElencoChat::class.java)
                     .putExtra("currentUser", currentUser)
                 startActivity(apriElencoChat)
@@ -79,7 +76,7 @@ class PaginaApplicazioneHome : AppCompatActivity() {
 
             // creazione e setting activities
             val corsiDiLaurea = intent.getStringArrayListExtra("corsiDiLaurea")
-            val currentUser = intent.getStringExtra("currentUser")
+
             val intentSearch = Intent(this, PaginaApplicazioneCerca::class.java)
                 .putExtra("currentUser", currentUser)
                 .putExtra("corsiDiLaurea", corsiDiLaurea)
@@ -90,6 +87,7 @@ class PaginaApplicazioneHome : AppCompatActivity() {
             val intentProfile = Intent(this, PaginaApplicazioneProfilo::class.java)
                 .putExtra("currentUser", currentUser)
 
+            // setting e switch per gestire la barra di navigazione
             btmNav = findViewById(R.id.navBar)
             btmNav.setSelectedItemId(R.id.home)
             btmNav.setOnItemSelectedListener { item ->

@@ -1,5 +1,6 @@
 package it.uninsubria.insubriasocial
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -14,6 +15,7 @@ import com.google.firebase.firestore.Query
 
 class PaginaAnnunciSalvati : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance()
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -30,11 +32,9 @@ class PaginaAnnunciSalvati : AppCompatActivity() {
         val annunciSalvati = arrayListOf<String>()
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, annunciSalvati)
         listView.adapter = adapter
-        adapter.notifyDataSetChanged()
 
         val loadQuery: Query =
             db.collection("InsubriaSocial_Annunci")
-                .orderBy("data", Query.Direction.DESCENDING)
                 .whereArrayContains("salvato_da", currentUser!!)
         loadQuery.get().addOnCompleteListener { task ->
             if(task.isSuccessful){

@@ -22,6 +22,7 @@ class PaginaApplicaFiltro : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val currentUser = intent.getStringExtra("currentUser")
         var filtro = false
         val corsiDiLaurea = arrayListOf("Economia", "Giurisprudenza", "Informatica", "Medicina")
         val corsoDiLaurea = findViewById<Spinner>(R.id.spinner)
@@ -33,6 +34,7 @@ class PaginaApplicaFiltro : AppCompatActivity() {
         findViewById<Button>(R.id.btnInviaMessaggio).setOnClickListener{
             val tornaIndietro = Intent(this, PaginaApplicazioneCerca::class.java)
                 .putExtra("filtro", filtro)
+                .putExtra("currentUser", currentUser)
             startActivity(tornaIndietro)
         }
 
@@ -41,6 +43,7 @@ class PaginaApplicaFiltro : AppCompatActivity() {
             filtro = true
             val applicaFiltro = Intent(this, PaginaApplicazioneCerca::class.java)
                 .putExtra("corsoSelezionato", corsoSelezionato)
+                .putExtra("currentUser", currentUser)
                 .putExtra("filtro", filtro)
             startActivity(applicaFiltro)
         }
@@ -48,6 +51,7 @@ class PaginaApplicaFiltro : AppCompatActivity() {
         findViewById<Button>(R.id.btnCancella).setOnClickListener {
             val cancellaFiltro = Intent(this, PaginaApplicazioneCerca::class.java)
                 .putExtra("filtro", filtro)
+                .putExtra("currentUser", currentUser)
             startActivity(cancellaFiltro)
         }
     }

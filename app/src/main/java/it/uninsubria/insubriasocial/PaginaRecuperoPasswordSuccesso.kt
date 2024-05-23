@@ -19,6 +19,7 @@ class PaginaRecuperoPasswordSuccesso : AppCompatActivity() {
             insets
         }
 
+
         findViewById<TextView>(R.id.txtPgAccedi).setOnClickListener {
             val ritornaAccesso = Intent(this, PaginaAccesso::class.java)
             startActivity(ritornaAccesso)

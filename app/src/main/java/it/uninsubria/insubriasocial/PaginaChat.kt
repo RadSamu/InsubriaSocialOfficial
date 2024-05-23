@@ -38,6 +38,7 @@ class PaginaChat : AppCompatActivity() {
         val messaggi = arrayListOf<String>()
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, messaggi)
         listView.adapter = adapter
+        // query che cerca se nella raccolta compaiono gli username degli utenti della chat in qualsiasi ordine (grazie all'uso della listOf di listOf's)
         val queryRefresh: Query =
            db.collection("InsubriaSocial_Chat")
                .whereIn("utenti", listOf(
@@ -74,7 +75,7 @@ class PaginaChat : AppCompatActivity() {
             findViewById<Button>(R.id.btnInviaMessaggio).setOnClickListener{
                 var stringa = findViewById<EditText>(R.id.editTextScriviMessaggio).text.toString()
                 val timestamp = LocalDateTime.now().toString()
-
+// query che crea la sottocollezione Messaggi se già non esiste e vi salva il messaggio
                 val writeQuery: Query =
                     db.collection("InsubriaSocial_Chat")
                         .orderBy("timestamp", Query.Direction.ASCENDING)
@@ -114,6 +115,7 @@ class PaginaChat : AppCompatActivity() {
                     }
                 }
             }
+            // tornare indietro
             findViewById<Button>(R.id.btnIndietro3).setOnClickListener {
                 val tornaIndietro = Intent(this, PaginaElencoChat::class.java)
                     .putExtra("currentUser", currentUser)

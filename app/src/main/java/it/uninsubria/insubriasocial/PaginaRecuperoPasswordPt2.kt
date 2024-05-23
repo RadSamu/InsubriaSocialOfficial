@@ -9,17 +9,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.ktx.Firebase
 
 class PaginaRecuperoPasswordPt2 : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance()
     val Utenti = db.collection("InsubriaSocial_Utenti")
-    lateinit var auth: FirebaseAuth
     private lateinit var nuovaPassword: EditText
     private lateinit var confermaNuovaPassword: EditText
 
@@ -45,7 +41,7 @@ class PaginaRecuperoPasswordPt2 : AppCompatActivity() {
             val confPsw = confermaNuovaPassword.text.toString().trim()
 
 
-            // Query per cercare l'utente
+            // query per cercare l'utente
             val srcQuery: Query =
                 db.collection("InsubriaSocial_Utenti")
                     .whereEqualTo("eMail", address)

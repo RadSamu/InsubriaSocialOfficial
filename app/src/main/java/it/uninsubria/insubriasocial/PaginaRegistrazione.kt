@@ -17,15 +17,10 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 
 class PaginaRegistrazione : AppCompatActivity() {
-    private val firestore: Any
-        get() {
-            TODO()
-        }
     private lateinit var nome: EditText
     private lateinit var cognome: EditText
     private lateinit var eMail: EditText
@@ -34,7 +29,6 @@ class PaginaRegistrazione : AppCompatActivity() {
     private lateinit var confPassword: EditText
     private lateinit var corsoDiLaurea: Spinner
     val db = FirebaseFirestore.getInstance()
-    val collectionName = "InsubriaSocial_Utenti"
     lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +41,7 @@ class PaginaRegistrazione : AppCompatActivity() {
             insets
         }
 
+//dichiarazione delle variabili
         nome = findViewById<EditText>(R.id.editTextNome)
         cognome =  findViewById<EditText>(R.id.editTextCognome)
         corsoDiLaurea = findViewById<Spinner>(R.id.spinner2)
@@ -56,6 +51,7 @@ class PaginaRegistrazione : AppCompatActivity() {
         confPassword = findViewById<EditText>(R.id.editTextRegConfPsw)
         auth = Firebase.auth
 
+// setting dello spinner e del suo adapter
         val corsiDiLaurea = arrayListOf("Economia", "Giurisprudenza", "Informatica", "Medicina")
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, corsiDiLaurea)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -72,9 +68,9 @@ class PaginaRegistrazione : AppCompatActivity() {
             val password = password.text.toString().trim()
             val confPassword = confPassword.text.toString().trim()
             val mailCheck = "@studenti.uninsubria.it"
-            var corsoSelezionato = corsoDiLaurea.selectedItem.toString()
+            val corsoSelezionato = corsoDiLaurea.selectedItem.toString()
 
-// Setting dell'hash map
+// setting dell'hash map
             val userMap = hashMapOf(
                 "nome" to nome,
                 "cognome" to cognome,
@@ -84,7 +80,7 @@ class PaginaRegistrazione : AppCompatActivity() {
                 "password" to password
             )
 
-// Check del contenuto delle EditText
+// check del contenuto delle EditText
             if(!nome.isEmpty() && !cognome.isEmpty() && (!eMail.isEmpty() && mailCheck in eMail) && !username.isEmpty() && (!password.isEmpty() && (confPassword == password)) && !(corsoSelezionato == "null")){
 
             db.collection("InsubriaSocial_Utenti")
@@ -115,9 +111,7 @@ class PaginaRegistrazione : AppCompatActivity() {
 }
 
 
-fun Any.collection(s: String): CollectionReference {
-    TODO("Not yet implemented")
-}
+
 
 
 

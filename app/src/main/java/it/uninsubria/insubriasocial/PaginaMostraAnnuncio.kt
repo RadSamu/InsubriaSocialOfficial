@@ -34,7 +34,7 @@ class PaginaMostraAnnuncio : AppCompatActivity() {
         val titolo = sottostringa[3].toString()
         var annuncio = ""
         var luogo = ""
-        //query
+        //query per recuperare annuncio
         val loadQuery: Query =
             db.collection("InsubriaSocial_Annunci")
                 .whereEqualTo("titolo", titolo)
@@ -58,7 +58,7 @@ class PaginaMostraAnnuncio : AppCompatActivity() {
                 }
             }
         }
-
+// aggiunta ai preferiti creando un campo di un documento della raccolta se non esiste, se esiste aggiunge solamente il currentUser
         findViewById<Button>(R.id.btnAggiuntiPreferiti).setOnClickListener {
             val addQuery: Query =
                 db.collection("InsubriaSocial_Annunci")
@@ -68,12 +68,16 @@ class PaginaMostraAnnuncio : AppCompatActivity() {
                     for(document in task.result){
                         val docId = document.id
                         val soggetto = db.collection("InsubriaSocial_Annunci").document(docId)
-                        val updates = hashMapOf<String, Any>(
-                            "salvato_da" to arrayListOf(currentUser)
-                        )
-                        soggetto.update(updates)
-                            .addOnSuccessListener { Log.d(ContentValues.TAG, "Campo aggiunto con successo") }
-                            .addOnFailureListener { e -> Log.w(ContentValues.TAG, "Errore durante l'aggiunta del campo", e) }
+                        if(document.contains("salvato_da")){
+                            soggetto.update("salvato_da", FieldValue.arrayUnion(currentUser))
+                        }else{
+                            val updates = hashMapOf<String, Any>(
+                                "salvato_da" to arrayListOf(currentUser)
+                            )
+                            soggetto.update(updates)
+                                .addOnSuccessListener { Log.d(ContentValues.TAG, "Campo aggiunto con successo") }
+                                .addOnFailureListener { e -> Log.w(ContentValues.TAG, "Errore durante l'aggiunta del campo", e) }
+                        }
                         Toast.makeText(
                             this,
                             "Annuncio aggiunto ai preferiti!",
@@ -83,7 +87,7 @@ class PaginaMostraAnnuncio : AppCompatActivity() {
                 }
             }
         }
-
+// rimuovere dai preferiti
         findViewById<Button>(R.id.btnTogliPreferiti).setOnClickListener {
             val removeQuery: Query =
                 db.collection("InsubriaSocial_Annunci")
@@ -108,7 +112,7 @@ class PaginaMostraAnnuncio : AppCompatActivity() {
                 }
             }
         }
-
+// visualizzazione dell'annuncio sulla mappa
         findViewById<Button>(R.id.btnApriMappa).setOnClickListener {
             val apriMappa = Intent(this, PaginaMostraMappa::class.java)
                 .putExtra("currentUser", currentUser)

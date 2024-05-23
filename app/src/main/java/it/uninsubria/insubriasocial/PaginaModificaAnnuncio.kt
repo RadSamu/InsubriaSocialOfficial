@@ -1,28 +1,19 @@
 package it.uninsubria.insubriasocial
 
-import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.widget.addTextChangedListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.SetOptions
 
 class PaginaModificaAnnuncio : AppCompatActivity() {
     val db = FirebaseFirestore.getInstance()
-    val Annunci = db.collection("InsubriaSocial_Annunci")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -34,16 +25,16 @@ class PaginaModificaAnnuncio : AppCompatActivity() {
         }
 
 
-
+        val currentUser = intent.getStringExtra("currentUser")
         val data = intent.getStringExtra("data")
         val titolo = intent.getStringExtra("titolo")
         val descrizione = intent.getStringExtra("descrizione")
         findViewById<EditText>(R.id.editTextText).setText(data)
         findViewById<EditText>(R.id.editTextText2).setText(titolo)
         findViewById<EditText>(R.id.editTextText3).setText(descrizione)
-
+// query per salvare modifiche
         findViewById<Button>(R.id.btnSalva).setOnClickListener{
-            val currentUser = intent.getStringExtra("currentUser")
+
             val salvaModifica = Intent(this, PaginaApplicazioneBacheca::class.java)
                 .putExtra("currentUser", currentUser)
             val editQuery: Query =
@@ -75,6 +66,12 @@ class PaginaModificaAnnuncio : AppCompatActivity() {
             }
         }
 
+        findViewById<Button>(R.id.btnModIndietro).setOnClickListener {
+            val tornaIndietro = Intent(this, PaginaApplicazioneBacheca::class.java)
+                .putExtra("currentUser", currentUser)
+            startActivity(tornaIndietro)
+        }
+// query per eliminare l'annuncio
         findViewById<Button>(R.id.btnElimina).setOnClickListener {
             val currentUser = intent.getStringExtra("currentUser")
             val eliminaAnnuncio = Intent(this, PaginaApplicazioneBacheca::class.java)

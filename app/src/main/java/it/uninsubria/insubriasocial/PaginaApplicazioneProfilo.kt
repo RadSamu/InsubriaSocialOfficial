@@ -3,9 +3,7 @@ package it.uninsubria.insubriasocial
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.ListView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +30,7 @@ class PaginaApplicazioneProfilo : AppCompatActivity() {
         val currentUser = intent.getStringExtra("currentUser")
         findViewById<TextView>(R.id.textView10).setText(currentUser)
 
+        // query per ritornare la bio dell'utente
         val bioQuery: Query =
             db.collection("InsubriaSocial_Utenti")
                 .whereEqualTo("username", currentUser)
@@ -45,10 +44,10 @@ class PaginaApplicazioneProfilo : AppCompatActivity() {
             }
         }
 
-
+// setting e gestione del fragment
         val fragment = ModificaFragment()
         val bundle = Bundle()
-        bundle.putString("currentUser", currentUser) // Imposta il valore dell'argomento con una chiave
+        bundle.putString("currentUser", currentUser)
         fragment.arguments = bundle
         findViewById<Button>(R.id.button3).setOnClickListener {
                supportFragmentManager.beginTransaction()
