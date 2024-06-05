@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -35,6 +36,9 @@ class PaginaAccesso : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val imageView = findViewById<ImageView>(R.id.imageViewUni)
+        imageView.setImageResource(R.drawable.logoinsubria_removebg_preview)
 
         logUsername = findViewById<EditText>(R.id.editTextLogUser)
         logPassword = findViewById<EditText>(R.id.editTextLogPsw)

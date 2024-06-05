@@ -34,7 +34,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="14dp"
         android:queryHint="Cerca..."
-        android:background="@drawable/search_view_background"
+        android:backgroundTint="@color/cardview_light_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.032"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,7 @@
 
     <ListView
         android:id="@+id/simpleListViewCerca"
-        android:layout_width="413dp"
+        android:layout_width="match_parent"
         android:layout_height="546dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/navBar"
