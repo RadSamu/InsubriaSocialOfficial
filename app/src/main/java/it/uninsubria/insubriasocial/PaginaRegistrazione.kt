@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -40,6 +41,9 @@ class PaginaRegistrazione : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val imageView = findViewById<ImageView>(R.id.imageView2)
+        imageView.setImageResource(R.drawable.logoinsubria_removebg_preview)
 
 //dichiarazione delle variabili
         nome = findViewById<EditText>(R.id.editTextNome)

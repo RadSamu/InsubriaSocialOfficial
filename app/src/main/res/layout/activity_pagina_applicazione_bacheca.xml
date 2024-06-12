@@ -61,9 +61,9 @@
     <ListView
         android:id="@+id/simpleListViewCerca"
         android:layout_width="match_parent"
-        android:layout_height="534dp"
+        android:layout_height="550dp"
         app:layout_constraintBottom_toTopOf="@+id/navBar"
-        app:layout_constraintTop_toBottomOf="@+id/btnAdd"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
         app:layout_constraintVertical_bias="0.816"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-1dp" />
@@ -72,7 +72,7 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="114dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="114dp"
         android:text="I TUOI ANNUNCI:"
         android:textColor="#000000"
@@ -80,9 +80,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/simpleListViewCerca"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/btnAdd"
-        app:layout_constraintVertical_bias="0.536" />
+        app:layout_constraintVertical_bias="0.553" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

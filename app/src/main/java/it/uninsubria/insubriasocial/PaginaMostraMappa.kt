@@ -65,7 +65,6 @@ class PaginaMostraMappa : AppCompatActivity(), MapListener, GpsStatus.Listener {
         val posizione = intent.getStringExtra("posizione")
         var latitude = 0.0
         var longitude = 0.0
-
         when(posizione){
             "Pad. Seppilli" -> {
                 latitude = 45.79937610926918

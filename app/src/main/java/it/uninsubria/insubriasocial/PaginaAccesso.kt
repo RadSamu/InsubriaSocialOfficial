@@ -37,6 +37,7 @@ class PaginaAccesso : AppCompatActivity() {
             insets
         }
 
+        // setting dell'immagine
         val imageView = findViewById<ImageView>(R.id.imageViewUni)
         imageView.setImageResource(R.drawable.logoinsubria_removebg_preview)
 

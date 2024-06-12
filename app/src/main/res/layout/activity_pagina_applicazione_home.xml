@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="24dp"
-        android:text="INSUBRIASOCIAL"
+        android:text="HOME"
         android:textColor="#000000"
         android:textSize="40dp"
         android:textStyle="bold"

@@ -33,6 +33,7 @@ class PaginaAnnunciSalvati : AppCompatActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, annunciSalvati)
         listView.adapter = adapter
 
+        // query di caricamento degli annunci
         val loadQuery: Query =
             db.collection("InsubriaSocial_Annunci")
                 .whereArrayContains("salvato_da", currentUser!!)
@@ -50,6 +51,7 @@ class PaginaAnnunciSalvati : AppCompatActivity() {
             }
             adapter.notifyDataSetChanged()
 
+            // click dell'annuncio
             listView.setOnItemClickListener { parent, view, position, id ->
                 val selectedItem = parent.getItemAtPosition(position).toString()
                 val visualizza = Intent(this, PaginaMostraAnnuncio::class.java)

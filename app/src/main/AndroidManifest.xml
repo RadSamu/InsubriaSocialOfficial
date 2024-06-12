@@ -63,7 +63,8 @@
             android:exported="false" />
         <activity
             android:name=".PaginaApplicazioneCerca"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".PaginaApplicazioneHome"
             android:exported="false" />
