@@ -71,7 +71,7 @@ class PaginaAggiungiBacheca : AppCompatActivity() {
                 "autore" to currentUser,
                 "posizione" to posizioneSelezionata
             )
-
+// controllo sulle editText
             if(!data.isEmpty() && !titolo.isEmpty() && !descrizione.isEmpty()){
                 db.collection("InsubriaSocial_Annunci")
                     .add(noticeMap)

@@ -30,7 +30,7 @@ class PaginaApplicazioneBacheca : AppCompatActivity() {
             insets
         }
 
-
+// variabili di sistema
             val currentUser = intent.getStringExtra("currentUser")
 
             var annuncio = ""

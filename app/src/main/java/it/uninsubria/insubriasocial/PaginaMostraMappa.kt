@@ -33,11 +33,11 @@ class PaginaMostraMappa : AppCompatActivity(), MapListener, GpsStatus.Listener {
             getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE)
         )
         val currentUser = intent.getStringExtra("currentUser")
-        val annuncio = intent.getStringExtra("annuncio")
+        val selectedItem = intent.getStringExtra("selectedItem")
         findViewById<Button>(R.id.btnIndietro3).setOnClickListener {
             val tornaIndietro = Intent(this, PaginaMostraAnnuncio::class.java)
                 .putExtra("currentUser", currentUser)
-                .putExtra("annuncio", annuncio)
+                .putExtra("selectedItem", selectedItem)
             startActivity(tornaIndietro)
         }
         mMap = binding.osmmap

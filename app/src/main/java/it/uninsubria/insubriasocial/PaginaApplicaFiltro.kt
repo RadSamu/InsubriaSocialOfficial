@@ -22,6 +22,7 @@ class PaginaApplicaFiltro : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        // variabili di sistema
         val currentUser = intent.getStringExtra("currentUser")
         var filtro = false
         val corsiDiLaurea = arrayListOf("Economia", "Giurisprudenza", "Informatica", "Medicina")
@@ -30,7 +31,7 @@ class PaginaApplicaFiltro : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         corsoDiLaurea.adapter = adapter
 
-
+// setting solito dei bottoni e dei relativi Intent
         findViewById<Button>(R.id.btnInviaMessaggio).setOnClickListener{
             val tornaIndietro = Intent(this, PaginaApplicazioneCerca::class.java)
                 .putExtra("filtro", filtro)

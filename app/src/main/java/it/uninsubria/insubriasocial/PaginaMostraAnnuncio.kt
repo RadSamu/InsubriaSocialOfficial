@@ -118,6 +118,7 @@ class PaginaMostraAnnuncio : AppCompatActivity() {
                 .putExtra("currentUser", currentUser)
                 .putExtra("posizione", luogo)
                 .putExtra("annuncio", annuncio)
+                .putExtra("selectedItem", selectedItem)
             startActivity(apriMappa)
         }
         findViewById<Button>(R.id.btnIndietro3).setOnClickListener {
