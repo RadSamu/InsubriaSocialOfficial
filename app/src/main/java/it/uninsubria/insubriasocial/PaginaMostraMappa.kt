@@ -85,8 +85,8 @@ class PaginaMostraMappa : AppCompatActivity(), MapListener, GpsStatus.Listener {
                  longitude = 8.853074371484748
             }
             "Mensa Monte Generoso" -> {
-                 latitude = 45.79857861591073
-                 longitude = 8.853087478114666
+                 latitude = 45.79859479540669
+                 longitude = 8.853528075048706
             }
         }
         val mapPoint = GeoPoint(latitude, longitude)
