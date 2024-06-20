@@ -6,6 +6,7 @@ import android.location.GpsStatus
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import it.uninsubria.insubriasocial.databinding.ActivityPaginaMostraMappaBinding
 import org.osmdroid.api.IMapController
@@ -63,6 +64,7 @@ class PaginaMostraMappa : AppCompatActivity(), MapListener, GpsStatus.Listener {
 
 
         val posizione = intent.getStringExtra("posizione")
+        findViewById<TextView>(R.id.textViewPosizione).setText(posizione)
         var latitude = 0.0
         var longitude = 0.0
         when(posizione){
