@@ -61,7 +61,7 @@
     <ListView
         android:id="@+id/simpleListViewCerca"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="500dp"
         app:layout_constraintBottom_toTopOf="@+id/navBar"
         app:layout_constraintTop_toBottomOf="@+id/textView12"
         app:layout_constraintVertical_bias="0.816"
